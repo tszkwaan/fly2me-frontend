@@ -36,7 +36,7 @@
   </v-layout>
 </template>
 
-<script lang="ts">
+<script>
 import FlightListArea from "@/components/flight/FlightListArea.vue";
 import FlightFormDialog from "@/components/flight/AddFlightDialog.vue";
 import ConfirmDeleteDialog from "@/components/common/dialog/ConfirmDeleteDialog.vue";
@@ -65,7 +65,7 @@ export default {
     ...mapState({
       session: (state) => state.session,
     }),
-    getListType(): "future" | "history" {
+    getListType() {
       return this.activeTab === 0 ? "future" : "history";
     },
   },
@@ -91,7 +91,9 @@ export default {
     },
     notifyEvent(event, result, flight) {
       let message;
-      if (result) {
+      console.log("in notifyEvent: " + result);
+      console.log(flight);
+      if (result === "success") {
         this.$refs.flightListArea.setFlights(event, flight);
         message = `Flight ${event === "create" ? "created" : "updated"}!`;
       } else {

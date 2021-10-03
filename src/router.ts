@@ -1,16 +1,16 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import FlightsPage from '@/views/FlightsPage.vue'
+import Vue from "vue";
+import Router from "vue-router";
+import FlightsPage from "@/views/FlightsPage.vue";
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
+  mode: "history",
   routes: [
     {
-      path: '/flights',
-      name: 'FlightsPage',
-      component: FlightsPage
-    }
-  ]
-})
+      path: "/flights",
+      name: "FlightsPage",
+      component: FlightsPage,
+    },
+  ],
+});

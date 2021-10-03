@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
-    "pretty": "prettier --write \"./**/*.{js,jsx,json,vue}\""
+    "pretty": "prettier --write \"./**/*.{js,jsx,json,vue,ts}\""
   },
   "dependencies": {
     "axios": "^0.21.4",
