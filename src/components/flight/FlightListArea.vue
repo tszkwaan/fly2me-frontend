@@ -72,7 +72,9 @@ export default {
           this.sortFlightListByFromDate();
           break;
         case "update":
-          const index = this.flights.findIndex(flightItem => flightItem.id === flight.id);
+          const index = this.flights.findIndex(
+            (flightItem) => flightItem.id === flight.id
+          );
           if (index > -1) {
             Vue.set(this.flights, index, flight);
           }
@@ -92,9 +94,9 @@ export default {
 #flight-list-area {
   text-align: center;
 }
-@media(max-width: 509px) {
-    #flight-list-area {
-        padding: 10px;
-    }
+@media (max-width: 509px) {
+  #flight-list-area {
+    padding: 10px;
+  }
 }
 </style>

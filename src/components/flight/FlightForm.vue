@@ -277,6 +277,9 @@ export default {
       const [month, day, year] = date.split("/");
       return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
     },
+    resetStep() {
+      this.step = 1;
+    },
   },
   watch: {
     "editableFlight.fromDate"() {
@@ -299,6 +302,7 @@ export default {
       }
       this.flight = cloneDeep(this.originalFlight);
       this.editableFlight = cloneDeep(this.flight);
+      this.resetStep();
     },
   },
 };
