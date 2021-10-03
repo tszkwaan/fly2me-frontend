@@ -22,170 +22,168 @@
 
     <v-stepper-items>
       <v-stepper-content step="1">
-        <v-menu
-          v-slot:activator="{ on }"
-          class="manual-fill"
-          :close-on-content-click="false"
-          v-model="editableFlight.fromDateMenu"
-          :nudge-right="40"
-          lazy
-          transition="scale-transition"
-          offset-y
-          full-width
-          max-width="290px"
-          min-width="290px"
-        >
+        <v-card>
+          <v-menu
+            v-model="editableFlight.fromDateMenu"
+            :close-on-content-click="false"
+            :nudge-right="40"
+            transition="scale-transition"
+            offset-y
+            min-width="auto"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-text-field
+                v-model="editableFlight.fromDateFormatted"
+                label="Departure date"
+                append-icon="event"
+                v-bind="attrs"
+                v-on="on"
+              ></v-text-field>
+            </template>
+            <v-date-picker
+              v-model="editableFlight.fromDate"
+              @input="editableFlight.fromDateMenu = false"
+              no-title
+            ></v-date-picker>
+          </v-menu>
+
           <v-text-field
-            slot="activator"
-            v-model="editableFlight.fromDateFormatted"
-            label="Departure date"
-            append-icon="event"
-            @blur="
-              editableFlight.fromDate = parseDate(
-                editableFlight.fromDateFormatted
-              )
+            label="Flight"
+            v-model="editableFlight.flightNo"
+            append-icon="airplanemode_active"
+            @input="
+              editableFlight.flightNo = editableFlight.flightNo.toUpperCase()
             "
           />
-          <v-date-picker
-            v-model="editableFlight.fromDate"
-            no-title
-            @input="editableFlight.fromDateMenu = false"
+
+          <v-text-field
+            label="Airline (optional)"
+            v-model="editableFlight.airline"
           />
-        </v-menu>
 
-        <v-text-field
-          label="Flight"
-          v-model="editableFlight.flightNo"
-          append-icon="airplanemode_active"
-          @input="
-            editableFlight.flightNo = editableFlight.flightNo.toUpperCase()
-          "
-        />
+          <v-text-field
+            label="Ticket number (optional)"
+            v-model="editableFlight.ticketNum"
+            @input="
+              editableFlight.ticketNum = editableFlight.ticketNum.toUpperCase()
+            "
+          />
 
-        <v-text-field
-          label="Airline (optional)"
-          v-model="editableFlight.airline"
-        />
+          <v-layout align-center justify-end row>
+            <v-flex xs6 md3 class="column-button">
+              <save-button
+                :fab="false"
+                :icon="false"
+                :primary="false"
+                @click="triggerSave"
+              />
+            </v-flex>
 
-        <v-text-field
-          label="Ticket number (optional)"
-          v-model="editableFlight.ticketNum"
-          @input="
-            editableFlight.ticketNum = editableFlight.ticketNum.toUpperCase()
-          "
-        />
-
-        <v-layout align-center justify-end row>
-          <v-flex xs6 md3 class="column-button">
-            <save-button
-              :fab="false"
-              :icon="false"
-              :primary="false"
-              @click="triggerSave"
-            />
-          </v-flex>
-
-          <v-flex xs6 md3 class="column-button">
-            <button-continue class="button-action" @click="incrementStep" />
-          </v-flex>
-        </v-layout>
+            <v-flex xs6 md3 class="column-button">
+              <button-continue class="button-action" @click="incrementStep" />
+            </v-flex>
+          </v-layout>
+        </v-card>
       </v-stepper-content>
 
       <v-stepper-content step="2">
-        <v-layout row wrap>
-          <v-flex xs12 class="body-2">Departure</v-flex>
-          <v-flex xs12 sm4>
-            <v-text-field
-              label="Airport"
-              height="20"
-              v-model="editableFlight.fromAirport"
-              @input="
-                editableFlight.fromAirport =
-                  editableFlight.fromAirport.toUpperCase()
-              "
-            />
-          </v-flex>
-          <v-flex xs12 sm4>
-            <v-text-field
-              label="Terminal"
-              height="20"
-              v-model="editableFlight.fromTerminal"
-              @input="
-                editableFlight.fromTerminal =
-                  editableFlight.fromTerminal.toUpperCase()
-              "
-            />
-          </v-flex>
-          <v-flex xs12 sm4>
-            <v-text-field
-              class="auto-fill"
-              v-model="editableFlight.fromTime"
-              label="Time"
-              mask="time"
-              height="20"
-              persistent-hint
-              return-masked-value
-            />
-          </v-flex>
+        <v-card>
+          <v-layout container row>
+            <v-flex xs12 class="body-2">Departure</v-flex>
+            <v-flex xs12 sm4>
+              <v-text-field
+                label="Airport"
+                height="20"
+                v-model="editableFlight.fromAirport"
+                @input="
+                  editableFlight.fromAirport =
+                    editableFlight.fromAirport.toUpperCase()
+                "
+              />
+            </v-flex>
+            <v-flex xs12 sm4>
+              <v-text-field
+                label="Terminal"
+                height="20"
+                v-model="editableFlight.fromTerminal"
+                @input="
+                  editableFlight.fromTerminal =
+                    editableFlight.fromTerminal.toUpperCase()
+                "
+              />
+            </v-flex>
+            <v-flex xs12 sm4>
+              <v-text-field
+                class="auto-fill"
+                v-model="editableFlight.fromTime"
+                label="Time"
+                mask="time"
+                height="20"
+                persistent-hint
+                return-masked-value
+              />
+            </v-flex>
 
-          <v-flex xs12 class="body-2">Arrival</v-flex>
-          <v-flex xs12 sm4>
-            <v-text-field
-              label="Airport"
-              height="20"
-              v-model="editableFlight.toAirport"
-              @input="
-                editableFlight.toAirport =
-                  editableFlight.toAirport.toUpperCase()
-              "
-            />
-          </v-flex>
-          <v-flex xs12 sm4>
-            <v-text-field
-              label="Terminal"
-              height="20"
-              v-model="editableFlight.toTerminal"
-              @input="
-                editableFlight.toTerminal =
-                  editableFlight.toTerminal.toUpperCase()
-              "
-            />
-          </v-flex>
-          <v-flex xs12 sm4>
-            <v-text-field
-              class="auto-fill"
-              v-model="editableFlight.toTime"
-              label="Time"
-              height="20"
-              mask="time"
-              persistent-hint
-              return-masked-value
-            />
-          </v-flex>
-        </v-layout>
+            <v-flex xs12 class="body-2">Arrival</v-flex>
+            <v-flex xs12 sm4>
+              <v-text-field
+                label="Airport"
+                height="20"
+                v-model="editableFlight.toAirport"
+                @input="
+                  editableFlight.toAirport =
+                    editableFlight.toAirport.toUpperCase()
+                "
+              />
+            </v-flex>
+            <v-flex xs12 sm4>
+              <v-text-field
+                label="Terminal"
+                height="20"
+                v-model="editableFlight.toTerminal"
+                @input="
+                  editableFlight.toTerminal =
+                    editableFlight.toTerminal.toUpperCase()
+                "
+              />
+            </v-flex>
+            <v-flex xs12 sm4>
+              <v-text-field
+                class="auto-fill"
+                v-model="editableFlight.toTime"
+                label="Time"
+                height="20"
+                mask="time"
+                persistent-hint
+                return-masked-value
+              />
+            </v-flex>
+          </v-layout>
+          <v-layout align-center justify-end row>
+            <v-flex xs6 md3 class="column-button">
+              <save-button
+                :fab="false"
+                :icon="false"
+                :primary="false"
+                @click="triggerSave"
+              />
+            </v-flex>
 
-        <v-layout align-center justify-end row>
-          <v-flex xs6 md3 class="column-button">
-            <save-button
-              :fab="false"
-              :icon="false"
-              :primary="false"
-              @click="triggerSave"
-            />
-          </v-flex>
-
-          <v-flex xs6 md3 class="column-button">
-            <button-continue class="button-action" @click="incrementStep" />
-          </v-flex>
-        </v-layout>
+            <v-flex xs6 md3 class="column-button">
+              <button-continue class="button-action" @click="incrementStep" />
+            </v-flex>
+          </v-layout>
+        </v-card>
       </v-stepper-content>
 
       <v-stepper-content step="3">
-        <v-text-field v-model="editableFlight.hotel" label="Hotel name" />
+        <v-card>
+          <v-text-field v-model="editableFlight.hotel" label="Hotel name" />
 
-        <v-layout align-center justify-end row>
-          <save-button :fab="false" :icon="false" @click="triggerSave" />
-        </v-layout>
+          <v-layout align-center justify-end row>
+            <save-button :fab="false" :icon="false" @click="triggerSave" />
+          </v-layout>
+        </v-card>
       </v-stepper-content>
     </v-stepper-items>
   </v-stepper>
@@ -228,7 +226,7 @@ export default {
       users: [],
       airports: [],
       terminals: [],
-      step: 0,
+      step: 1,
     };
   },
   computed: {
@@ -292,7 +290,7 @@ export default {
         (flight) => flight.flightNo === _this.editableFlight.flightNo
       );
       if (existingFlight) {
-        _this.setFieldsFromFlightRecord(existingFlight);
+        // _this.setFieldsFromFlightRecord(existingFlight);
       }
     },
     originalFlight() {
@@ -302,11 +300,6 @@ export default {
       this.flight = cloneDeep(this.originalFlight);
       this.editableFlight = cloneDeep(this.flight);
     },
-  },
-  created() {
-    FlightApi.getAllFlight().then((res) => {
-      this.flights = res.data;
-    });
   },
 };
 </script>
@@ -351,5 +344,8 @@ export default {
 }
 .column-button {
   padding: 5px;
+}
+.v-stepper__wrapper > .v-card {
+  padding: 10px;
 }
 </style>
