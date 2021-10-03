@@ -53,11 +53,13 @@
             </v-flex>
             <v-flex v-if="flight.ticketNum" xs6 class="flight-ticket-num">
               <v-tooltip bottom>
-                <span
-                  slot="activator"
-                  @click="copyToClipboard(flight.ticketNum)"
-                  >{{ flight.ticketNum }}</span
-                >
+                <template v-slot:activator="{ on, attrs }">
+                  <span
+                    slot="activator"
+                    @click="copyToClipboard(flight.ticketNum)"
+                    >{{ flight.ticketNum }}</span
+                  >
+                </template>
                 <span> Click to copy ticket number! </span>
               </v-tooltip>
             </v-flex>
@@ -95,7 +97,7 @@ export default {
 <style lang="scss" scoped>
 .flight-box {
   margin: 0.5rem;
-  padding: 0.5rem;
+  padding: 20px;
   background: linear-gradient(
     rgba(255, 255, 255, 0.9),
     rgba(255, 255, 255, 0.9)
@@ -135,7 +137,7 @@ export default {
   float: left;
 }
 .flight-box-wrapper {
-  max-width: 400px;
+  max-width: 500px;
   display: block;
 }
 </style>

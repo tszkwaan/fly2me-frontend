@@ -1,7 +1,9 @@
 <template>
   <v-dialog v-model="isDisplay" content-class="form-dialog" width="500">
-    <v-card id="card-login">
-      <v-card-title class="font-weight-thin title"> Add a flight </v-card-title>
+    <v-card>
+      <v-card-title class="title">
+        {{ formMode === "create" ? "Add" : "Edit" }} a flight
+      </v-card-title>
       <v-card-text id="card-flight-form">
         <flight-form
           ref="flightForm"
@@ -11,34 +13,6 @@
         />
       </v-card-text>
     </v-card>
-    <!--
-    <v-card>
-      <v-card-title
-        class="dialog-title">
-        <v-flex
-          xs8
-          sm10
-          class="title">
-          Add flight
-        </v-flex>
-        <v-flex
-          xs4
-          sm2
-          class="operation-buttons">
-          <save-button
-            @trigger="saveFlight"/>
-        </v-flex>
-      </v-card-title>
-      <v-card-text
-        class="form-card">
-        <flight-form
-          ref="flightForm"
-          :originalFlight="originalFlight"
-          :formMode="formMode"
-          @notifyEvent="notifyEvent"/>
-      </v-card-text>
-    </v-card>
-    -->
   </v-dialog>
 </template>
 

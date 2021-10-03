@@ -59,15 +59,6 @@ export default {
       this.$session.destroy();
       this.$router.push("/");
     },
-    watch: {
-      session: {
-        deep: true,
-        handler: function (value) {
-          console.log("session::");
-          console.log(session);
-        },
-      },
-    },
   },
 };
 </script>

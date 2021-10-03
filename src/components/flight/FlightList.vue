@@ -8,9 +8,7 @@
         @trigger="trigger"
       />
     </template>
-    <div v-else class="error-message font-weight-thin headline">
-      No flights yet, add now!
-    </div>
+    <div v-else class="error-message headline">No flights yet, add now!</div>
   </div>
 </template>
 
