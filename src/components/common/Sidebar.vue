@@ -1,14 +1,14 @@
 <template>
   <v-navigation-drawer v-model="showSidebar" clipped fixed app>
     <v-list dense>
-      <v-list-tile>
-        <v-list-tile-action>
+      <v-list-item>
+        <v-list-item-action>
           <v-icon>airplanemode_active</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title>Flights</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
+        </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title>Flights</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
     </v-list>
   </v-navigation-drawer>
 </template>
