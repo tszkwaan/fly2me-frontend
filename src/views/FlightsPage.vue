@@ -1,7 +1,7 @@
 <template>
   <v-layout id="flights-container" row wrap justify-center>
-    <v-flex md2 />
-    <v-flex md5>
+    <v-flex md2 d-xs-none/>
+    <v-flex xs12 md5>
       <v-tabs v-model="activeTab" fixed-tabs color="white" slider-color="white">
         <v-tab v-for="(tab, index) in tabs" :key="`tab-${index}`" ripple>
           {{ tab }}
@@ -129,5 +129,13 @@ export default {
 
 #tab-content {
   box-shadow: unset;
+}
+
+@media(max-width: 509px) {
+    .operation-bar {
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 20px;
+    }
 }
 </style>

@@ -88,8 +88,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #flight-list-area {
   text-align: center;
+}
+@media(max-width: 509px) {
+    #flight-list-area {
+        padding: 10px;
+    }
 }
 </style>
