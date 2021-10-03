@@ -57,21 +57,24 @@ export default {
           this.$emit("showSnackbar", "Failed to delete flight! :(");
         });
     },
+    addFlightToList(flight) {
+      this.flights.push(flight);
+    },
+    sortFlightListByFromDate() {
+      this.flights.sort(function (a, b) {
+        return new Date(b.fromDate) - new Date(a.fromDate);
+      });
+    },
     setFlights(event, flight) {
-      const _this = this;
       switch (event) {
         case "create":
-          this.flights.push(flight);
+          this.addFlightToList(flight);
+          this.sortFlightListByFromDate();
           break;
         case "update":
-          let existingFlight = this.flights.find(
-            (flightItem) => flightItem.id === flight.id
-          );
-          if (existingFlight !== undefined) {
-            let index = this.flights.findIndex(
-              (flightItem) => flightItem.id === flight.id
-            );
-            Vue.set(_this.flights, index, flight);
+          const index = this.flights.findIndex(flightItem => flightItem.id === flight.id);
+          if (index > -1) {
+            Vue.set(this.flights, index, flight);
           }
           break;
       }
