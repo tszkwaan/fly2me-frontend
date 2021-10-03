@@ -2,6 +2,7 @@
   <v-menu
     class="manual-fill"
     :close-on-content-click="false"
+    v-slot:activator="{ on }"
     v-model="showMenu"
     :nudge-right="40"
     lazy

@@ -2,10 +2,10 @@
   <v-btn small class="primary" @click="click"> Continue </v-btn>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   methods: {
-    click() {
+    click(): void {
       this.$emit("click");
     },
   },

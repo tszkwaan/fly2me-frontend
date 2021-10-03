@@ -18,9 +18,9 @@ export default {
     FlightList,
   },
   props: {
-    showFuture: {
-      type: Boolean,
-      default: true,
+    listType: {
+      type: String,
+      default: "future",
     },
   },
   data() {
@@ -29,42 +29,18 @@ export default {
     };
   },
   created() {
-    this.getUsers();
     this.getFlights();
   },
   methods: {
     async getFlights() {
-      await FlightApi.getMyFlightList(this.showFuture ? "future" : "history")
+      await FlightApi.getMyFlightList(this.listType)
         .then((res) => {
           this.flights = res.data.flights;
-          this.mapFlightWithUser();
         })
         .catch((err) => {
-          console.log(err);
           this.$emit("showSnackbar", "Failed to get flights! :(");
+          console.error(err);
         });
-    },
-    async getUsers() {
-      await UserApi.getAllUser()
-        .then((res) => {
-          this.users = res.data;
-          this.mapFlightWithUser();
-        })
-        .catch((err) => {
-          console.log(err);
-          this.$emit("showSnackbar", "Failed to get users! :(");
-        });
-    },
-    mapFlightWithUser() {
-      const _this = this;
-      if (_this.users) {
-        _this.flights = _this.flights.map((flight) => {
-          let userId = flight.userId;
-          let user = _this.users.find((userItem) => userItem.id === userId);
-          flight.user = user;
-          return flight;
-        });
-      }
     },
     trigger(action, flight) {
       this.$emit("trigger", action, flight);
@@ -102,7 +78,7 @@ export default {
     },
   },
   watch: {
-    showFuture() {
+    listType() {
       this.getFlights();
     },
   },

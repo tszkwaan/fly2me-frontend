@@ -10,8 +10,8 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn flat="flat" @click="toggleDialog"> Cancel </v-btn>
-        <v-btn flat="flat" color="#B71C1C" dark @click="confirmDelete">
+        <v-btn text="flat" @click="toggleDialog"> Cancel </v-btn>
+        <v-btn text="flat" color="#B71C1C" dark @click="confirmDelete">
           Confirm
         </v-btn>
       </v-card-actions>

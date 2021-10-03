@@ -1,11 +1,15 @@
 <template>
   <v-tooltip bottom>
-    <v-icon slot="activator" @click="edit"> edit </v-icon>
+    <template v-slot:activator="{ on, attrs }">
+      <v-btn icon v-bind="attrs" v-on="on" @click="edit">
+        <v-icon> edit </v-icon>
+      </v-btn>
+    </template>
     <span> Edit flight </span>
   </v-tooltip>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: "EditButton",
   props: {
@@ -15,7 +19,7 @@ export default {
     },
   },
   methods: {
-    edit() {
+    edit(): void {
       this.$emit("trigger", "edit");
     },
   },

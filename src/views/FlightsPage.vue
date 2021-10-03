@@ -7,10 +7,10 @@
           {{ tab }}
         </v-tab>
       </v-tabs>
-      <v-card flat id="tab-content">
+      <v-card id="tab-content">
         <flight-list-area
           ref="flightListArea"
-          :show-future="showFuture"
+          :list-type="getListType"
           @trigger="trigger"
           @showSnackbar="showSnackbar"
         />
@@ -18,10 +18,7 @@
     </v-flex>
 
     <v-flex md2 class="operation-bar">
-      <v-tooltip bottom>
-        <add-button slot="activator" @click="showAddFlightDialog" />
-        <span> Add a flight record </span>
-      </v-tooltip>
+      <add-button slot="activator" @click="showAddFlightDialog" />
     </v-flex>
     <v-flex xs12>
       <flight-form-dialog ref="flightFormDialog" @notifyEvent="notifyEvent" />
@@ -39,7 +36,7 @@
   </v-layout>
 </template>
 
-<script>
+<script lang="ts">
 import FlightListArea from "@/components/flight/FlightListArea.vue";
 import FlightFormDialog from "@/components/flight/AddFlightDialog.vue";
 import ConfirmDeleteDialog from "@/components/common/dialog/ConfirmDeleteDialog.vue";
@@ -68,8 +65,8 @@ export default {
     ...mapState({
       session: (state) => state.session,
     }),
-    showFuture() {
-      return this.activeTab === 0;
+    getListType(): "future" | "history" {
+      return this.activeTab === 0 ? "future" : "history";
     },
   },
   methods: {
@@ -117,12 +114,18 @@ export default {
 .flight-box {
   background-color: transparent;
 }
-.theme--light.v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active)[aria-selected=false] {
+.theme--light.v-tabs
+  > .v-tabs-bar
+  .v-tab:not(.v-tab--active)[aria-selected="false"] {
   color: #fff;
 }
 /* enf od flight tab style */
 
 .operation-bar {
   text-align: left;
+}
+
+#tab-content {
+  box-shadow: unset;
 }
 </style>

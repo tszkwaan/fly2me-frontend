@@ -1,11 +1,15 @@
 <template>
   <v-tooltip bottom>
-    <v-icon slot="activator" @click="remove"> delete </v-icon>
+    <template v-slot:activator="{ on, attrs }">
+      <v-btn icon v-bind="attrs" v-on="on" @click="remove">
+        <v-icon> delete </v-icon>
+      </v-btn>
+    </template>
     <span> Delete flight </span>
   </v-tooltip>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: "EditButton",
   props: {
@@ -15,7 +19,7 @@ export default {
     },
   },
   methods: {
-    remove() {
+    remove(): void {
       this.$emit("trigger", "confirmRemove");
     },
   },

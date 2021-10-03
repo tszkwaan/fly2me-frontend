@@ -23,6 +23,7 @@
     <v-stepper-items>
       <v-stepper-content step="1">
         <v-menu
+          v-slot:activator="{ on }"
           class="manual-fill"
           :close-on-content-click="false"
           v-model="editableFlight.fromDateMenu"

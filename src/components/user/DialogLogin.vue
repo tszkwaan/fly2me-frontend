@@ -9,7 +9,7 @@
         <v-card-actions>
           <v-layout row wrap>
             <v-flex xs12 sm4>
-              <v-btn block flat @click.native="toggleDialog"> Cancel </v-btn>
+              <v-btn block @click.native="toggleDialog"> Cancel </v-btn>
             </v-flex>
             <v-flex sm4 />
             <v-flex xs12 sm4>

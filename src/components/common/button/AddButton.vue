@@ -1,18 +1,27 @@
 <template>
-  <v-btn fab dark small color="white" @click="click">
-    <v-icon color="primary"> add </v-icon>
-  </v-btn>
+  <v-tooltip bottom>
+    <template v-slot:activator="{ on, attrs }">
+      <v-btn fab small icon v-bind="attrs" v-on="on" @click="click">
+        <v-icon color="primary"> add </v-icon>
+      </v-btn>
+    </template>
+    <span> Add flight </span>
+  </v-tooltip>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: "AddButton",
   methods: {
-    click() {
+    click(): void {
       this.$emit("click");
     },
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+button {
+  background-color: #fff;
+}
+</style>

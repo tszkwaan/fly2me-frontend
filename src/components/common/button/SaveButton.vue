@@ -5,7 +5,7 @@
   </v-btn>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: "SaveButton",
   props: {
@@ -23,7 +23,7 @@ export default {
     },
   },
   methods: {
-    save() {
+    save(): void {
       this.$emit("click");
     },
   },
