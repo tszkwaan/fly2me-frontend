@@ -54,7 +54,6 @@
             @input="
               editableFlight.flightNum = editableFlight.flightNum.toUpperCase()
             "
-            v-validate="'required'"
           />
 
           <v-text-field
@@ -217,12 +216,18 @@ export default {
     },
     originalFlight: {
       type: Object,
+      deafult: new Flight()
     },
   },
   data() {
     return {
       flight: new Flight(),
-      editableFlight: new Flight(),
+      editableFlight: {
+          ...cloneDeep(this.originalFlight),
+          fromDateFormatted: this.formatDate(
+            this.originalFlight.fromDate
+        )
+      },
       flights: [],
       users: [],
       airports: [],
@@ -280,7 +285,7 @@ export default {
     },
     resetStep() {
       this.step = 1;
-    },
+    }
   },
   watch: {
     "editableFlight.fromDate"() {
@@ -297,13 +302,19 @@ export default {
         // _this.setFieldsFromFlightRecord(existingFlight);
       }
     },
-    originalFlight() {
-      if (this.originalFlight.id === 0) {
-        this.originalFlight.userId = this.users[0].id;
+    originalFlight: {
+      deep: true,
+      handler: function(value, prevVal) {
+          console.log('originalFlight watcher::')
+          console.log(value)
+          console.log(prevVal)
+        if (value.id === 0) {
+            value.userId = this.users[0].id;
+        }
+        this.flight = cloneDeep(value);
+        this.editableFlight = cloneDeep(this.flight);
+        this.resetStep();
       }
-      this.flight = cloneDeep(this.originalFlight);
-      this.editableFlight = cloneDeep(this.flight);
-      this.resetStep();
     },
   },
 };
