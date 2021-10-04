@@ -1,4 +1,4 @@
-export interface UserInterface {
+export interface FlightUserInterface {
   id: number;
   name: string;
 }

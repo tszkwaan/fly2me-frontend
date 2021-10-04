@@ -4,18 +4,17 @@
       <v-gravatar :email="user.name" default-img="identicon" />
     </v-avatar>
     <div>
-      <div class="info-text info-text-name">
+      <div class="info-text-name">
         {{ user.name }}
-      </div>
-      <div class="info-text info-text-leave" v-show="showLeaveInfo">
-        Leave remain: {{ user.numOfRemainLeave }}
       </div>
     </div>
   </div>
 </template>
-<script>
-export default {
-  name: "collab-user",
+<script lang="ts">
+import Vue from 'vue';
+
+export default Vue.extend({
+  name: 'collab-user',
   props: {
     user: {
       type: Object,
@@ -29,72 +28,35 @@ export default {
     size: {
       type: String,
       required: false,
-      default: "middle",
+      default: 'middle',
     },
     namePosition: {
       type: String,
-      default: "right",
+      default: 'right',
     },
-  },
-  data() {
-    return {};
   },
   computed: {
-    avatarSize: function () {
-      if (this.size === "small") {
-        return "2rem";
-      } else {
-        return "3rem";
-      }
+    avatarSize(): string {
+      return (this.size === 'small') ? '2rem' : '3rem';
     },
-  },
-  watch: {
-    user: {
-      deep: true,
-      handler: function (value) {},
-    },
-  },
-};
+  }
+});
 </script>
 
-<style scoped>
-/* Collab user */
+<style scoped lang="scss">
 .collab-user {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &:hover {
+      cursor: pointer;
+  }
 }
-.collab-user:hover {
-  cursor: pointer;
-}
-/* Avatar */
-.avatar {
-  border-radius: 50%;
-  float: right;
-  margin: 0 1px;
-}
-.unselected {
-  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-  filter: grayscale(100%);
-}
-.unselected:hover {
-  -webkit-filter: grayscale(50%); /* Safari 6.0 - 9.0 */
-  filter: grayscale(50%);
-}
-/* Info */
-.info {
-  /*
-    margin-left: 2px;
-    */
-}
-.info-text {
-  font-size: 0.8rem;
-}
+
 .info-text-name {
   text-align: left;
   margin-left: 5px;
   font-size: 12px;
-}
-.info-text-leave {
 }
 </style>

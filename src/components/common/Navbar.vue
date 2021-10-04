@@ -39,7 +39,7 @@ import Session from "@/model/session.ts";
 import { mapState } from "vuex";
 
 export default {
-  name: "Navigation",
+  name: "Navbar",
   components: {},
   data: () => ({
     drawer: true,

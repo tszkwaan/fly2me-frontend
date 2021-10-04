@@ -1,4 +1,4 @@
-import { UserInterface } from "./flightUser";
+import { FlightUserInterface } from "./flightUser";
 
 export interface FlightInterface {
   id: number | null;
@@ -14,7 +14,7 @@ export interface FlightInterface {
   toTime: string;
   airline: string;
   hotel: string;
-  user: UserInterface | null;
+  user: FlightUserInterface | null;
 }
 
 export default class Flight implements FlightInterface {
@@ -31,7 +31,7 @@ export default class Flight implements FlightInterface {
   public toTime: string;
   public airline: string;
   public hotel: string;
-  public user: UserInterface | null;
+  public user: FlightUserInterface | null;
 
   constructor(
     id: number | null,
@@ -47,7 +47,7 @@ export default class Flight implements FlightInterface {
     toTime: string,
     airline: string,
     hotel: string,
-    user: UserInterface | null
+    user: FlightUserInterface | null
   ) {
     this.id = id;
     this.fromDate = fromDate;

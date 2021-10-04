@@ -1,7 +1,7 @@
 <template>
   <v-tooltip bottom>
     <template v-slot:activator="{ on, attrs }">
-      <v-btn fab small icon v-bind="attrs" v-on="on" @click="click">
+      <v-btn fab small icon v-bind="attrs" v-on="on" @click="add">
         <v-icon color="primary"> add </v-icon>
       </v-btn>
     </template>
@@ -13,8 +13,8 @@
 export default {
   name: "AddButton",
   methods: {
-    click(): void {
-      this.$emit("click");
+    add(): void {
+      this.$emit("add");
     },
   },
 };

@@ -18,7 +18,7 @@
     </v-flex>
 
     <v-flex md2 class="operation-bar">
-      <add-button slot="activator" @click="showAddFlightDialog" />
+      <add-button @add="showAddFlightDialog" />
     </v-flex>
     <v-flex xs12>
       <flight-form-dialog ref="flightFormDialog" @notifyEvent="notifyEvent" />
