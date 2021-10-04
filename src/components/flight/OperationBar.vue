@@ -34,4 +34,9 @@ export default {
 .flight-box:hover .flight-operation-bar {
   display: block;
 }
+@media(max-width: 509px) {
+    .flight-box .flight-operation-bar {
+        display: block;
+    }
+}
 </style>
