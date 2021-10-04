@@ -49,11 +49,12 @@
 
           <v-text-field
             label="Flight"
-            v-model="editableFlight.flightNo"
+            v-model="editableFlight.flightNum"
             append-icon="airplanemode_active"
             @input="
-              editableFlight.flightNo = editableFlight.flightNo.toUpperCase()
+              editableFlight.flightNum = editableFlight.flightNum.toUpperCase()
             "
+            v-validate="'required'"
           />
 
           <v-text-field
@@ -287,10 +288,10 @@ export default {
         this.editableFlight.fromDate
       );
     },
-    "editableFlight.flightNo"() {
+    "editableFlight.flightNum"() {
       const _this = this;
       let existingFlight = this.flights.find(
-        (flight) => flight.flightNo === _this.editableFlight.flightNo
+        (flight) => flight.flightNum === _this.editableFlight.flightNum
       );
       if (existingFlight) {
         // _this.setFieldsFromFlightRecord(existingFlight);
