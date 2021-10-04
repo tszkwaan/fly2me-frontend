@@ -46,7 +46,7 @@
           </v-layout>
           <v-layout row wrap md6 xs12 class="row-airline-detail">
             <v-flex xs12 class="flight-detail">
-              {{ flight.flightNo }}
+              {{ flight.flightNum }}
             </v-flex>
             <v-flex xs6 class="flight-airline">
               {{ flight.airline }}
