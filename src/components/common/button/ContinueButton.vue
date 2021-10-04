@@ -3,14 +3,16 @@
 </template>
 
 <script lang="ts">
-export default {
+import Vue from 'vue';
+
+export default Vue.extend({
   name: 'ContinueButton',
   methods: {
     onClick(): void {
       this.$emit('continue');
     },
   },
-};
+});
 </script>
 
 <style scoped></style>

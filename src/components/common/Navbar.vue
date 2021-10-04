@@ -34,36 +34,37 @@
   </v-card>
 </template>
 
-<script>
-import Session from "@/model/session.ts";
-import { mapState } from "vuex";
+<script lang="ts">
+import Vue from 'vue';
+import Session from '@/model/session.ts';
+import { mapState } from 'vuex';
 
-export default {
-  name: "Navbar",
+export default Vue.extend({
+  name: 'Navbar',
   components: {},
   data: () => ({
     drawer: true,
   }),
   computed: {
-    ...mapState(["session"]),
+    ...mapState(['session']),
   },
   methods: {
-    toggleSidebar() {
-      this.$emit("toggleSidebar");
+    toggleSidebar(): void {
+      this.$emit('toggleSidebar');
     },
-    toggleLoginDialog() {
-      this.$emit("toggleLoginDialog");
+    toggleLoginDialog(): void {
+      this.$emit('toggleLoginDialog');
     },
-    logout() {
-      this.$store.commit("setSession", new Session());
+    logout(): void {
+      this.$store.commit('setSession', new Session());
       this.$session.destroy();
-      this.$router.push("/");
+      this.$router.push('/');
     },
   },
-};
+});
 </script>
 
-<style scoped>
+<style lang='scss' scoped>
 #logo {
   margin-top: 8px;
   height: 3rem;

@@ -13,20 +13,22 @@
   </v-navigation-drawer>
 </template>
 
-<script>
-export default {
-  name: "Sidebar",
+<script lang="ts">
+import Vue from 'vue';
+
+export default Vue.extend({
+  name: 'Sidebar',
   data() {
     return {
       showSidebar: false,
     };
   },
   methods: {
-    toggleSidebar() {
+    toggleSidebar(): void {
       this.showSidebar = !this.showSidebar;
     },
   },
-};
+});
 </script>
 
 <style></style>

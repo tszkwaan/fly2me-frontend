@@ -70,12 +70,13 @@
   </v-layout>
 </template>
 
-<script>
-import FlightOperationBar from "@/components/flight/OperationBar.vue";
-import CollabUser from "@/components/collab/CollabUser.vue";
+<script lang="ts">
+import Vue from 'vue';
+import FlightOperationBar from '@/components/flight/OperationBar.vue';
+import CollabUser from '@/components/collab/CollabUser.vue';
 
-export default {
-  name: "FlightBox",
+export default Vue.extend({
+  name: 'FlightBox',
   components: {
     FlightOperationBar,
     CollabUser,
@@ -87,62 +88,81 @@ export default {
     },
   },
   methods: {
-    trigger(action) {
-      this.$emit("trigger", action, this.flight);
+    trigger(action: string) {
+      this.$emit('trigger', action, this.flight);
     },
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>
-.flight-box {
-  margin: 0.5rem;
-  padding: 20px;
-  background: linear-gradient(
-    rgba(255, 255, 255, 0.9),
-    rgba(255, 255, 255, 0.9)
-  );
+
+$detail-font-color: rgba(0, 0, 0, 0.6);
+$detail-font-size-xl: 1.9rem;
+$detail-font-size-lg: 1.3rem;
+$detail-font-size-md: 0.9rem;
+$detail-font-size-sm: 0.8rem;
+
+.flight {
+
+    &-box {
+        margin: 0.5rem;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.9);
+    }
+
+    &-date {
+        text-align: left;
+        font-size: $detail-font-size-lg;
+    }
+
+    &-airline {
+        color: $detail-font-color;
+        font-size: $detail-font-size-md;
+    }
+
+    &-detail-place,
+    &-detail {
+        font-size: $detail-font-size-lg;
+    }
+
+    &-terminal {
+        font-size: $detail-font-size-sm;
+        color: $detail-font-color;
+    }
+
+    &-detail-time {
+        font-size: $detail-font-size-xl;
+    }
+
+    &-ticket-num {
+        text-align: right;
+        color: $detail-font-color;
+        font-size: $detail-font-size-md;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &-box-wrapper {
+        max-width: 500px;
+        display: block;
+    }
 }
-.flight-date {
-  text-align: left;
-  font-size: 1.3rem;
-}
+
 .row-airline-detail {
   text-align: left;
 }
-.flight-airline {
-  color: rgba(0, 0, 0, 0.6);
-  font-size: 0.9rem;
-}
-.flight-detail-place,
-.flight-detail {
-  font-size: 1.3rem;
-}
-.flight-terminal {
-  font-size: 0.8rem;
-  color: rgba(0, 0, 0, 0.6);
-}
-.flight-detail-time {
-  font-size: 1.9rem;
-}
-.flight-ticket-num {
-  text-align: right;
-  color: rgba(0, 0, 0, 0.6);
-  font-size: 0.9rem;
-  &:hover {
-    cursor: pointer;
-  }
-}
-.collab-user {
-  float: left;
-}
-.flight-box-wrapper {
-  max-width: 500px;
-  display: block;
-}
+
 </style>
 <style>
+
 .info-text-name {
   font-weight: bold;
 }
+
+.collab-user {
+  float: left;
+}
+
 </style>

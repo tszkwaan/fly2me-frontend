@@ -1,6 +1,5 @@
 <template>
   <v-dialog
-    content-class="dialog-confirm-delete"
     v-model="isShow"
     max-width="290"
   >
@@ -10,8 +9,8 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn text="flat" @click="toggleDialog"> Cancel </v-btn>
-        <v-btn text="flat" color="#B71C1C" dark @click="confirmDelete">
+        <v-btn @click="toggleDialog"> Cancel </v-btn>
+        <v-btn color="#B71C1C" dark @click="confirmDelete">
           Confirm
         </v-btn>
       </v-card-actions>
@@ -19,13 +18,15 @@
   </v-dialog>
 </template>
 
-<script>
-export default {
-  name: "DeleteDialopg",
+<script lang="ts">
+import Vue from 'vue';
+
+export default Vue.extend({
+  name: 'DeleteDialopg',
   props: {
     componentType: {
       type: String,
-      default: "component",
+      default: 'component',
     },
   },
   data() {
@@ -35,20 +36,18 @@ export default {
     };
   },
   methods: {
-    confirmDelete() {
+    confirmDelete(): void {
       this.isShow = false;
-      this.$emit("trigger", "remove", this.component);
+      this.$emit('trigger', 'remove', this.component);
     },
-    toggleDialog(component) {
+    toggleDialog(component: object): void {
       this.component = component;
       this.isShow = !this.isShow;
     },
   },
-};
+});
 </script>
 
 <style>
-.dialog-confirm-delete {
-  background: white !important;
-}
+
 </style>

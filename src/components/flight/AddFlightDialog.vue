@@ -16,15 +16,17 @@
   </v-dialog>
 </template>
 
-<script>
-import FlightForm from "@/components/flight/FlightForm.vue";
-import SaveButton from "@/components/common/button/SaveButton.vue";
-import Flight from "@/model/flight.ts";
+<script lang="ts">
+import Vue from 'vue';
+import FlightForm from '@/components/flight/FlightForm.vue';
+import SaveButton from '@/components/common/button/SaveButton.vue';
+import Flight from '@/model/flight.ts';
 
-import { cloneDeep } from "lodash";
+import { cloneDeep } from 'lodash';
+import { FlightInterface } from '../../model/flight';
 
-export default {
-  name: "AddFlightDialog",
+export default Vue.extend({
+  name: 'AddFlightDialog',
   components: {
     FlightForm,
     SaveButton,
@@ -34,47 +36,47 @@ export default {
     return {
       isDisplay: false,
       originalFlight: new Flight(),
-      formMode: "create",
+      formMode: 'create',
     };
   },
   methods: {
-    saveFlight() {
+    saveFlight(): void {
       this.$refs.flightForm.saveFlight();
     },
-    showDialog(flight, mode) {
+    showDialog(flight: FlightInterface, mode: string): void {
       if (mode) {
         this.formMode = mode;
       }
       this.originalFlight = cloneDeep(flight);
       this.isDisplay = true;
     },
-    resetFormMode() {
-      this.formMode = "create";
+    resetFormMode(): void {
+      this.formMode = 'create';
     },
-    resetDialog() {
+    resetDialog(): void {
       this.resetFormMode();
       this.originalFlight = new Flight();
     },
-    notifyEvent(event, result, flight) {
+    notifyEvent(event, result, flight): void {
       this.isDisplay = false;
-      this.$emit("notifyEvent", event, result, flight);
+      this.$emit('notifyEvent', event, result, flight);
     },
-    addFlight() {
+    addFlight(): void {
       this.resetFormMode();
       this.isDisplay = true;
     },
   },
   watch: {
-    isDisplay() {
+    isDisplay(): void {
       if (!this.isDisplay) {
         this.resetDialog();
       }
     },
   },
-};
+});
 </script>
 
-<style scoped>
+<style scoped lang='scss'>
 .operation-buttons {
   text-align: right;
 }

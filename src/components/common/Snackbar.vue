@@ -4,24 +4,25 @@
   </v-snackbar>
 </template>
 
-<script>
-export default {
-  name: "Snackbar",
+<script lang="ts">
+import Vue from 'vue';
+export default Vue.extend({
+  name: 'Snackbar',
   data() {
     return {
       showSnackbar: false,
-      text: "",
+      text: '',
     };
   },
   methods: {
-    display(message) {
-      this.showSnackbar = true;
-      if (message !== undefined) {
+    display(message: string): void {
+      if (message) {
+        this.showSnackbar = true;
         this.text = message;
       }
     },
   },
-};
+});
 </script>
 
 <style></style>

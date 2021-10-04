@@ -9,20 +9,23 @@
         <router-view />
       </v-container>
     </v-main>
+      <v-footer padless app bottom absolute>
+    <v-col class="text-center" cols="12">
+      {{ new Date().getFullYear() }} — <span class="author">Tsz Kwan</span>
+    </v-col>
+  </v-footer>
   </v-app>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import Navbar from "@/components/common/Navbar.vue";
-import Footer from "@/components/common/Footer.vue";
-import MaterialIcons from "material-icons";
+import Vue from 'vue';
+import Navbar from '@/components/common/Navbar.vue';
+import MaterialIcons from 'material-icons';
 
 export default Vue.extend({
-  name: "App",
+  name: 'App',
   components: {
     Navbar,
-    Footer,
     MaterialIcons
   },
   methods: {
@@ -44,5 +47,15 @@ export default Vue.extend({
   background-position: center;
   color: white;
   text-align: center;
+}
+.v-footer {
+  margin-top: 50px;
+  padding-left: 1rem;
+  background: none;
+  color: white;
+
+  .author {
+      font-style: italic;
+  }
 }
 </style>

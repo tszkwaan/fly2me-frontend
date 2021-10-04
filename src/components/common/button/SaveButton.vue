@@ -6,7 +6,9 @@
 </template>
 
 <script lang="ts">
-export default {
+import Vue from 'vue';
+
+export default Vue.extend({
   name: 'SaveButton',
   props: {
     fab: {
@@ -27,7 +29,7 @@ export default {
       this.$emit('save');
     },
   },
-};
+});
 </script>
 
 <style scoped></style>

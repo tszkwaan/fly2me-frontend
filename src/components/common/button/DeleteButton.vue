@@ -10,7 +10,9 @@
 </template>
 
 <script lang="ts">
-export default {
+import Vue from 'vue';
+
+export default Vue.extend({
   name: 'DeleteButton',
   props: {
     isMini: {
@@ -23,7 +25,7 @@ export default {
       this.$emit('trigger', 'confirmRemove');
     },
   },
-};
+});
 </script>
 
 <style scoped></style>
