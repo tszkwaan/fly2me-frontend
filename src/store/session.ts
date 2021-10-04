@@ -1,4 +1,4 @@
-import Session from "@/model/session";
+import Session from '@/model/session';
 
 interface State {
   username: string;
@@ -9,9 +9,9 @@ interface State {
 
 export default {
   state: {
-    username: "",
+    username: '',
     userId: undefined,
-    token: "",
+    token: '',
     isLoggedIn: false,
   },
   mutations: {

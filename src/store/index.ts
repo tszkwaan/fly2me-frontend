@@ -1,7 +1,7 @@
-import Vue from "vue";
-import Vuex from "vuex";
-import session from "@/store/session.ts";
-import createPersistedState from "vuex-persistedstate";
+import Vue from 'vue';
+import Vuex from 'vuex';
+import session from '@/store/session.ts';
+import createPersistedState from 'vuex-persistedstate';
 
 Vue.use(Vuex);
 

@@ -5,22 +5,23 @@
   </v-layout>
 </template>
 
-<script>
-import EditButton from "@/components/common/button/EditButton.vue";
-import DeleteButton from "@/components/common/button/DeleteButton.vue";
+<script lang="ts">
+import Vue from 'vue';
+import EditButton from '@/components/common/button/EditButton.vue';
+import DeleteButton from '@/components/common/button/DeleteButton.vue';
 
-export default {
-  name: "OperationBar",
+export default Vue.extend({
+  name: 'OperationBar',
   components: {
     EditButton,
     DeleteButton,
   },
   methods: {
-    trigger(action) {
-      this.$emit("trigger", action);
+    trigger(action: string): void {
+      this.$emit('trigger', action);
     },
   },
-};
+});
 </script>
 
 <style type="scss">
@@ -28,6 +29,8 @@ export default {
   flex-direction: column;
   float: right;
 }
+</style>
+<style type="scss">
 .flight-box .flight-operation-bar {
   display: none;
 }

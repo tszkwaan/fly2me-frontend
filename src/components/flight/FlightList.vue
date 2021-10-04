@@ -8,15 +8,17 @@
         @trigger="trigger"
       />
     </template>
-    <div v-else class="error-message headline">No flights yet, add now!</div>
+    <div v-else class="no-content headline">No flights yet, add now!</div>
   </div>
 </template>
 
-<script>
-import FlightBox from "@/components/flight/FlightBox.vue";
+<script lang="ts">
+import Vue from 'vue';
+import FlightBox from '@/components/flight/FlightBox.vue';
+import { FlightInterface } from '@/model/flight.ts'
 
-export default {
-  name: "FlightList",
+export default Vue.extend({
+  name: 'FlightList',
   components: {
     FlightBox,
   },
@@ -26,50 +28,21 @@ export default {
     },
   },
   methods: {
-    trigger(action, flight) {
-      this.$emit("trigger", action, flight);
+    trigger(action: string, flight: FlightInterface): void {
+      this.$emit('trigger', action, flight);
     },
   },
-};
+});
 </script>
 
-<style>
-.flight-box-inner-box {
-  padding: 0.5rem;
-}
-.flight-details {
-  padding-left: 1.5rem;
-}
+<style scoped lang='scss'>
 #flight-list {
   padding-top: 3rem;
   height: 70vh;
   overflow-y: auto;
 }
-.to {
-  text-align: left;
-}
-.from {
-  text-align: right;
-}
-.connector {
-  text-align: center;
-}
-.row-airline-detail {
-  margin-top: 1.5rem;
-}
-.row-flight-time {
-  margin-top: 1.5rem;
-}
-.flight-user {
-  justify-content: flex-end;
-}
-.rows-flight-details {
-  margin-bottom: 1rem;
-}
-.detail-section {
-  margin-bottom: 0.8rem;
-}
-.error-message {
+
+.no-content {
   color: white;
   margin-top: 50px;
 }

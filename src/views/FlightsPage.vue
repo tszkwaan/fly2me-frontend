@@ -1,7 +1,7 @@
 <template>
-  <v-layout id="flights-container" row wrap justify-center>
+  <v-layout id='flights-container' row wrap justify-center>
     <v-flex md2 d-xs-none />
-    <v-flex xs12 md5>
+    <v-flex xs12 sm10 md5>
       <v-tabs v-model="activeTab" fixed-tabs color="white" slider-color="white">
         <v-tab v-for="(tab, index) in tabs" :key="`tab-${index}`" ripple>
           {{ tab }}
@@ -17,7 +17,7 @@
       </v-card>
     </v-flex>
 
-    <v-flex md2 class="operation-bar">
+    <v-flex xs12 sm2 md2 class="operation-bar">
       <add-button @add="showAddFlightDialog" />
     </v-flex>
     <v-flex xs12>
@@ -36,17 +36,18 @@
   </v-layout>
 </template>
 
-<script>
-import FlightListArea from "@/components/flight/FlightListArea.vue";
-import FlightFormDialog from "@/components/flight/AddFlightDialog.vue";
-import ConfirmDeleteDialog from "@/components/common/dialog/ConfirmDeleteDialog.vue";
-import Snackbar from "@/components/common/Snackbar.vue";
-import AddButton from "@/components/common/button/AddButton.vue";
+<script lang="ts">
+import Vue from 'vue';
+import FlightListArea from '@/components/flight/FlightListArea.vue';
+import FlightFormDialog from '@/components/flight/AddFlightDialog.vue';
+import ConfirmDeleteDialog from '@/components/common/dialog/ConfirmDeleteDialog.vue';
+import Snackbar from '@/components/common/Snackbar.vue';
+import AddButton from '@/components/common/button/AddButton.vue';
+import { FlightInterface } from '@/model/flight.ts'
+import { mapState } from 'vuex';
 
-import { mapState } from "vuex";
-
-export default {
-  name: "flights-page",
+export default Vue.extend({
+  name: 'flights-page',
   components: {
     FlightListArea,
     FlightFormDialog,
@@ -57,7 +58,7 @@ export default {
   data() {
     return {
       isDrawerDisplay: false,
-      tabs: ["Future", "History"],
+      tabs: ['Future', 'History'],
       activeTab: null,
     };
   },
@@ -65,55 +66,54 @@ export default {
     ...mapState({
       session: (state) => state.session,
     }),
-    getListType() {
-      return this.activeTab === 0 ? "future" : "history";
+    getListType(): 'future' | 'history' {
+      return this.activeTab === 0 ? 'future' : 'history';
     },
   },
   methods: {
-    toggleDrawer() {
+    toggleDrawer(): void {
       this.isDrawerDisplay = !this.isDrawerDisplay;
     },
-    trigger(action, flight = null) {
-      switch (action) {
-        case "edit":
-          this.$refs.flightFormDialog.showDialog(flight, "edit");
-          break;
-        case "confirmRemove":
-          this.$refs.confirmDeleteDialog.toggleDialog(flight);
-          break;
-        case "remove":
-          this.$refs.flightListArea.removeFlight(flight);
-          break;
+    trigger(action: 'edit' | 'confirmRemove' | 'remove', flight: FlightInterface): void {
+      if (flight) {
+        switch (action) {
+            case 'edit':
+            this.$refs.flightFormDialog.showDialog(flight, 'edit');
+            break;
+            case 'confirmRemove':
+            this.$refs.confirmDeleteDialog.toggleDialog(flight);
+            break;
+            case 'remove':
+            this.$refs.flightListArea.removeFlight(flight);
+            break;
+        }
       }
     },
-    showSnackbar(message) {
+    showSnackbar(message: string): void {
       this.$refs.snackbar.display(message);
     },
-    notifyEvent(event, result, flight) {
-      let message;
-      console.log("in notifyEvent: " + result);
-      console.log(flight);
-      if (result === "success") {
+    notifyEvent(event: string, result: string, flight: FlightInterface): void {
+      let message = '';
+      if (result === 'success') {
         this.$refs.flightListArea.setFlights(event, flight);
-        message = `Flight ${event === "create" ? "created" : "updated"}!`;
+        message = `Flight ${event === 'create' ? 'created' : 'updated'}!`;
       } else {
         message = `Failed to ${event} flight`;
       }
       this.showSnackbar(message);
     },
-    showAddFlightDialog() {
+    showAddFlightDialog(): void {
       this.$refs.flightFormDialog.addFlight();
     },
   },
-};
+});
 </script>
 
 <style>
 /* start of flight tab style */
 .v-item-group.theme--light.v-slide-group.v-tabs-bar,
 .theme--light.v-card,
-#flight-list,
-.flight-box {
+#flight-list {
   background-color: transparent;
 }
 .theme--light.v-tabs
@@ -127,19 +127,24 @@ export default {
   background-color: #fff;
 }
 
-.operation-bar {
-  text-align: left;
+</style>
+<style scoped>
+#flights-container {
+    margin-top: 20px;
 }
-
 #tab-content {
   box-shadow: unset;
 }
-
-@media (max-width: 509px) {
-  .operation-bar {
-    display: flex;
-    justify-content: flex-end;
+.operation-bar {
+  display: flex;
+    justify-content: flex-start;
     padding-right: 20px;
+}
+
+@media (max-width: 700px) {
+  .operation-bar {
+    justify-content: flex-end;
   }
 }
 </style>
+

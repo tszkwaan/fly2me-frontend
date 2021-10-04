@@ -70,7 +70,7 @@
           />
 
           <v-layout align-center justify-end row>
-            <v-flex xs6 md3 class="column-button">
+            <v-flex xs6 md3 class="operation-button">
               <save-button
                 :fab="false"
                 :icon="false"
@@ -79,7 +79,7 @@
               />
             </v-flex>
 
-            <v-flex xs6 md3 class="column-button">
+            <v-flex xs6 md3 class="operation-button">
               <continue-button class="button-action" @continue="incrementStep" />
             </v-flex>
           </v-layout>
@@ -89,7 +89,7 @@
       <v-stepper-content step="2">
         <v-card>
           <v-layout container row>
-            <v-flex xs12 class="body-2">Departure</v-flex>
+            <v-flex xs12 class="body-2 label-journey">Departure</v-flex>
             <v-flex xs12 sm4>
               <v-text-field
                 label="Airport"
@@ -124,7 +124,7 @@
               />
             </v-flex>
 
-            <v-flex xs12 class="body-2">Arrival</v-flex>
+            <v-flex xs12 class="body-2 label-journey">Arrival</v-flex>
             <v-flex xs12 sm4>
               <v-text-field
                 label="Airport"
@@ -160,7 +160,7 @@
             </v-flex>
           </v-layout>
           <v-layout align-center justify-end row>
-            <v-flex xs6 md3 class="column-button">
+            <v-flex xs6 md3 class="operation-button">
               <save-button
                 :fab="false"
                 :icon="false"
@@ -169,7 +169,7 @@
               />
             </v-flex>
 
-            <v-flex xs6 md3 class="column-button">
+            <v-flex xs6 md3 class="operation-button">
               <continue-button class="button-action" @continue="incrementStep" />
             </v-flex>
           </v-layout>
@@ -189,18 +189,20 @@
   </v-stepper>
 </template>
 
-<script>
-import SaveButton from "@/components/common/button/SaveButton.vue";
-import ContinueButton from "@/components/common/button/ContinueButton.vue";
+<script lang="ts">
+import Vue from 'vue';
+import SaveButton from '@/components/common/button/SaveButton.vue';
+import ContinueButton from '@/components/common/button/ContinueButton.vue';
 
-import Flight from "@/model/flight.ts";
-import FlightApi from "@/api/flight.ts";
-import UserApi from "@/api/user.ts";
-import { mapState } from "vuex";
-import { cloneDeep } from "lodash";
+import Flight from '@/model/flight.ts';
+import FlightApi from '@/api/flight.ts';
+import UserApi from '@/api/user.ts';
+import { mapState } from 'vuex';
+import { cloneDeep } from 'lodash';
+import { FlightInterface } from '../../model/flight';
 
-export default {
-  name: "FlightForm",
+export default Vue.extend({
+  name: 'FlightForm',
   components: {
     SaveButton,
     ContinueButton,
@@ -208,11 +210,11 @@ export default {
   props: {
     formType: {
       type: String,
-      default: "create",
+      default: 'create',
     },
     formMode: {
       type: String,
-      default: "create",
+      default: 'create',
     },
     originalFlight: {
       type: Object,
@@ -224,9 +226,7 @@ export default {
       flight: new Flight(),
       editableFlight: {
           ...cloneDeep(this.originalFlight),
-          fromDateFormatted: this.formatDate(
-            this.originalFlight.fromDate
-        )
+          fromDateFormatted: this.formatDate(this.originalFlight.fromDate)
       },
       flights: [],
       users: [],
@@ -236,15 +236,17 @@ export default {
     };
   },
   computed: {
-    ...mapState(["session"]),
+    ...mapState(['session']),
   },
   methods: {
-    formatDate(date) {
-      if (!date) return null;
-      const [year, month, day] = date.split("-");
+    formatDate(date: string): string {
+      if (!date) {
+          return '';
+      }
+      const [year, month, day] = date.split('-');
       return `${month}/${day}/${year}`;
     },
-    setFieldsFromFlightRecord(existingFlight) {
+    setFieldsFromFlightRecord(existingFlight: FlightInterface): void {
       this.editableFlight.fromAirport = existingFlight.fromAirport;
       this.editableFlight.toAirport = existingFlight.toAirport;
       this.editableFlight.fromTerminal = existingFlight.fromTerminal;
@@ -253,37 +255,32 @@ export default {
       this.editableFlight.toTime = existingFlight.toTime;
       this.editableFlight.airline = existingFlight.airline;
     },
-    async saveFlight() {
-      if (this.formMode === "create") {
-        await FlightApi.createFlight(this.editableFlight)
+    saveFlight(): void {
+      if (this.formMode === 'create') {
+        FlightApi.createFlight(this.editableFlight)
           .then((res) => {
-            this.$emit("notifyEvent", "create", "success", res.data);
+            this.$emit('notifyEvent', 'create', 'success', res.data);
           })
           .catch((err) => {
-            this.$emit("notifyEvent", "create", "fail");
+            this.$emit('notifyEvent', 'create', 'fail');
           });
       } else {
-        await FlightApi.updateFlight(this.editableFlight)
+        FlightApi.updateFlight(this.editableFlight)
           .then((res) => {
-            this.$emit("notifyEvent", "update", "success", res.data);
+            this.$emit('notifyEvent', 'update', 'success', res.data);
           })
           .catch((err) => {
-            this.$emit("notifyEvent", "update", "fail");
+            this.$emit('notifyEvent', 'update', 'fail');
           });
       }
     },
-    incrementStep() {
+    incrementStep(): void {
       this.step++;
     },
-    triggerSave() {
+    triggerSave(): void {
       this.saveFlight();
     },
-    parseDate(date) {
-      if (!date) return null;
-      const [month, day, year] = date.split("/");
-      return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
-    },
-    resetStep() {
+    resetStep(): void {
       this.step = 1;
     }
   },
@@ -302,12 +299,9 @@ export default {
         // _this.setFieldsFromFlightRecord(existingFlight);
       }
     },
-    originalFlight: {
+    "originalFlight": {
       deep: true,
-      handler: function(value, prevVal) {
-          console.log('originalFlight watcher::')
-          console.log(value)
-          console.log(prevVal)
+      handler(value, prevVal) {
         if (value.id === 0) {
             value.userId = this.users[0].id;
         }
@@ -317,48 +311,14 @@ export default {
       }
     },
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>
-.form-input {
-  padding-right: 10px;
-}
-.form-container {
-  align-items: baseline;
-}
-#form-section-header-accomodation {
-  margin-top: 2rem;
-  margin-bottom: 0;
-}
-.form-section-subheader,
-.form-input-airport {
-  &.sm {
-    margin-left: 45px;
-  }
-}
-.subheading {
+.label-journey {
   text-align: left;
 }
-.v-stepper {
-  background: linear-gradient(
-    rgba(255, 255, 255, 0.9),
-    rgba(255, 255, 255, 0.9)
-  );
-}
-.button-action {
-  float: right;
-}
-.v-stepper__step {
-  padding: 0 24px;
-}
-.layout.row.wrap > .flex {
-  padding: 8px;
-}
-.body-2 {
-  text-align: left;
-}
-.column-button {
+.operation-button {
   padding: 5px;
 }
 .v-stepper__wrapper > .v-card {

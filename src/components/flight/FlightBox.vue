@@ -2,7 +2,7 @@
   <v-layout row wrap justify-center>
     <v-flex md10 sm10 xs12 class="flight-box-wrapper">
       <div class="flight-box">
-        <v-flex xs12 class="flight-box-inner-box flight-basic">
+        <v-flex xs12 class="flight-basic">
           <v-layout row wrap>
             <v-flex xs6 class="flight-detail flight-date">
               <span>{{ flight.fromDate }}</span>
@@ -111,6 +111,10 @@ $detail-font-size-sm: 0.8rem;
         background: rgba(255, 255, 255, 0.9);
     }
 
+    &-basic {
+        padding: 0.5rem;
+    }
+
     &-date {
         text-align: left;
         font-size: $detail-font-size-lg;
@@ -144,16 +148,41 @@ $detail-font-size-sm: 0.8rem;
         }
     }
 
+    &-user {
+        justify-content: flex-end;
+    }
+
     &-box-wrapper {
         max-width: 500px;
         display: block;
     }
 }
 
-.row-airline-detail {
-  text-align: left;
+.row {
+    &-airline-detail {
+        margin-top: 1.5rem;
+        text-align: left;
+    }
+
+    &-flight-time {
+        margin-top: 1.5rem;
+    }
+
+    &-flight-details {
+        margin-bottom: 1rem;
+    }
 }
 
+
+.to {
+  text-align: left;
+}
+.from {
+  text-align: right;
+}
+.connector {
+  text-align: center;
+}
 </style>
 <style>
 
