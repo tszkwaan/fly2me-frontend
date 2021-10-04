@@ -1,7 +1,7 @@
 <template>
   <v-tooltip bottom>
     <template v-slot:activator="{ on, attrs }">
-      <v-btn icon v-bind="attrs" v-on="on" @click="edit">
+      <v-btn icon v-bind="attrs" v-on="on" @click="onClick">
         <v-icon> edit </v-icon>
       </v-btn>
     </template>
@@ -11,7 +11,7 @@
 
 <script lang="ts">
 export default {
-  name: "EditButton",
+  name: 'EditButton',
   props: {
     isMini: {
       type: Boolean,
@@ -19,8 +19,8 @@ export default {
     },
   },
   methods: {
-    edit(): void {
-      this.$emit("trigger", "edit");
+    onClick(): void {
+      this.$emit('trigger', 'edit');
     },
   },
 };

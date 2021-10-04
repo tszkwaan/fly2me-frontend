@@ -75,12 +75,12 @@
                 :fab="false"
                 :icon="false"
                 :primary="false"
-                @click="triggerSave"
+                @save="triggerSave"
               />
             </v-flex>
 
             <v-flex xs6 md3 class="column-button">
-              <button-continue class="button-action" @click="incrementStep" />
+              <continue-button class="button-action" @continue="incrementStep" />
             </v-flex>
           </v-layout>
         </v-card>
@@ -165,12 +165,12 @@
                 :fab="false"
                 :icon="false"
                 :primary="false"
-                @click="triggerSave"
+                @save="triggerSave"
               />
             </v-flex>
 
             <v-flex xs6 md3 class="column-button">
-              <button-continue class="button-action" @click="incrementStep" />
+              <continue-button class="button-action" @continue="incrementStep" />
             </v-flex>
           </v-layout>
         </v-card>
@@ -181,7 +181,7 @@
           <v-text-field v-model="editableFlight.hotel" label="Hotel name" />
 
           <v-layout align-center justify-end row>
-            <save-button :fab="false" :icon="false" @click="triggerSave" />
+            <save-button :fab="false" :icon="false" @save="triggerSave" />
           </v-layout>
         </v-card>
       </v-stepper-content>
@@ -191,7 +191,7 @@
 
 <script>
 import SaveButton from "@/components/common/button/SaveButton.vue";
-import ButtonContinue from "@/components/common/button/ButtonContinue.vue";
+import ContinueButton from "@/components/common/button/ContinueButton.vue";
 
 import Flight from "@/model/flight.ts";
 import FlightApi from "@/api/flight.ts";
@@ -203,7 +203,7 @@ export default {
   name: "FlightForm",
   components: {
     SaveButton,
-    ButtonContinue,
+    ContinueButton,
   },
   props: {
     formType: {

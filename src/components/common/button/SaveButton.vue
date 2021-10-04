@@ -1,5 +1,5 @@
 <template>
-  <v-btn :fab="fab" :class="{ primary: primary }" small @click="save">
+  <v-btn :fab="fab" :class="{ primary: primary }" small @click="onClick">
     <v-icon v-if="icon" color="primary"> save </v-icon>
     <span v-else>Save</span>
   </v-btn>
@@ -7,7 +7,7 @@
 
 <script lang="ts">
 export default {
-  name: "SaveButton",
+  name: 'SaveButton',
   props: {
     fab: {
       type: Boolean,
@@ -23,8 +23,8 @@ export default {
     },
   },
   methods: {
-    save(): void {
-      this.$emit("click");
+    onClick(): void {
+      this.$emit('save');
     },
   },
 };
