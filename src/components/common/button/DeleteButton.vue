@@ -15,10 +15,6 @@ import Vue from 'vue';
 export default Vue.extend({
     name: 'DeleteButton',
     props: {
-        isMini: {
-            type: Boolean,
-            default: true,
-        },
     },
     methods: {
         onClick(): void {

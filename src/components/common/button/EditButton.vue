@@ -15,10 +15,6 @@ import Vue from 'vue';
 export default Vue.extend({
     name: 'EditButton',
     props: {
-        isMini: {
-            type: Boolean,
-            default: true,
-        },
     },
     methods: {
         onClick(): void {

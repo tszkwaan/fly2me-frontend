@@ -1,13 +1,13 @@
 import { expect } from 'chai';
-import { shallowMount, mount } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import CollabUser from '@/components/collab/CollabUser.vue';
 
 describe('CollabUser.vue', () => {
 
-    let collabUser;
+    let wrapper;
 
     beforeEach(() => {
-        collabUser = shallowMount(CollabUser, {
+        wrapper = shallowMount(CollabUser, {
             propsData: {
                 size: 'small',
                 user: {
@@ -19,7 +19,7 @@ describe('CollabUser.vue', () => {
     });
 
     it('returns size for small avatar', () => {
-        expect(collabUser.vm.avatarSize).to.equal('2rem');
+        expect(wrapper.vm.avatarSize).to.equal('2rem');
     });
 
 });
