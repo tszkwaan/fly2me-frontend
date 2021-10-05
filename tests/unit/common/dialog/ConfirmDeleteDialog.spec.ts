@@ -3,7 +3,7 @@ import { shallowMount } from '@vue/test-utils';
 import ConfirmDeleteDialog from '@/components/common/dialog/ConfirmDeleteDialog.vue';
 import { isEqual } from 'lodash';
 
-import mockFlight from '../mock/flight.json';
+import mockFlight from '../../mock/flight.json';
 
 describe('ConfirmDeleteDialog.vue', () => {
 
