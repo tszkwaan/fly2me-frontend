@@ -245,7 +245,7 @@ export default Vue.extend({
             editableFlight: {
                 ...cloneDeep(this.originalFlight),
                 fromDateFormatted: outerThis.formatDate(
-                    this.originalFlight.fromDate
+                    this.originalFlight.fromDate,
                 ),
             },
             flights: [],
@@ -283,7 +283,7 @@ export default Vue.extend({
                             'notifyEvent',
                             'create',
                             'success',
-                            res.data
+                            res.data,
                         );
                     })
                     .catch((err) => {
@@ -296,7 +296,7 @@ export default Vue.extend({
                             'notifyEvent',
                             'update',
                             'success',
-                            res.data
+                            res.data,
                         );
                     })
                     .catch((err) => {
@@ -317,7 +317,7 @@ export default Vue.extend({
     watch: {
         'editableFlight.fromDate'() {
             this.editableFlight.fromDateFormatted = this.formatDate(
-                this.editableFlight.fromDate
+                this.editableFlight.fromDate,
             );
         },
         'editableFlight.flightNum'() {
@@ -326,7 +326,7 @@ export default Vue.extend({
             //     (flight) => flight.flightNum === _this.editableFlight.flightNum
             // );
             // if (existingFlight) {
-                // _this.setFieldsFromFlightRecord(existingFlight);
+            // _this.setFieldsFromFlightRecord(existingFlight);
             // }
         },
         originalFlight: {

@@ -8,7 +8,7 @@ export default class Session {
         token: string,
         username: string,
         isLoggedIn: boolean,
-        userId: number
+        userId: number,
     ) {
         this.token = token;
         this.username = username;

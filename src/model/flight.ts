@@ -47,7 +47,7 @@ export default class Flight implements FlightInterface {
         toTime: string,
         airline: string,
         hotel: string,
-        user: FlightUserInterface | null
+        user: FlightUserInterface | null,
     ) {
         this.id = id;
         this.fromDate = fromDate;

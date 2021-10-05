@@ -37,21 +37,21 @@ export default Vue.extend({
         login(): void {
             UserApi.login(this.user)
                 .then((res) => {
-                        this.$session.start();
-                        this.$session.set('jwt', res.data.token);
-                        const session = {
-                            token: res.data.token,
-                            username: res.data.name,
-                            isLoggedIn: true,
-                            userId: res.data.id
-                        }
-                        this.$store.commit('setSession', session);
-                        this.$emit('closeDialog', false);
-                        this.$router.push('/flights');
+                    this.$session.start();
+                    this.$session.set('jwt', res.data.token);
+                    const session = {
+                        token: res.data.token,
+                        username: res.data.name,
+                        isLoggedIn: true,
+                        userId: res.data.id,
+                    };
+                    this.$store.commit('setSession', session);
+                    this.$emit('closeDialog', false);
+                    this.$router.push('/flights');
                 })
                 .catch((err) => {
                     this.$refs.snackbar.display('Login failed');
-                    console.error(new Error(err))
+                    console.error(new Error(err));
                 });
         },
         ...mapMutations['session'],

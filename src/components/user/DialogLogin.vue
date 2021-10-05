@@ -7,15 +7,15 @@
                     <login-form ref="loginForm" @closeDialog="toggleDialog" />
                 </v-card-text>
                 <v-card-actions>
-                        <v-flex xs12 >
-                            <v-btn
-                                block
-                                color="primary"
-                                @click.native="onLoginButtonClick"
-                            >
-                                Login
-                            </v-btn>
-                        </v-flex>
+                    <v-flex xs12>
+                        <v-btn
+                            block
+                            color="primary"
+                            @click.native="onLoginButtonClick"
+                        >
+                            Login
+                        </v-btn>
+                    </v-flex>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -30,15 +30,15 @@ export default Vue.extend({
     name: 'LoginDialog',
     components: {
         LoginForm,
-    }, 
+    },
     data() {
         return {
             dialog: false,
         };
     },
     methods: {
-        toggleDialog(value: boolean): void {
-            this.dialog = value;
+        toggleDialog(): void {
+            this.dialog = !this.dialog;
         },
         onLoginButtonClick(): void {
             this.$refs.loginForm.login();

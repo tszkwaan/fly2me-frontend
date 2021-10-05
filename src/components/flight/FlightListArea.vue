@@ -51,7 +51,7 @@ export default Vue.extend({
             FlightApi.deleteFlight(flight.id)
                 .then((res) => {
                     this.flights = this.flights.filter(
-                        (flightItem) => flightItem.id !== flight.id
+                        (flightItem) => flightItem.id !== flight.id,
                     );
                     this.$emit('showSnackbar', 'Flight deleted!');
                 })
@@ -75,7 +75,7 @@ export default Vue.extend({
                     break;
                 case 'update':
                     const index = this.flights.findIndex(
-                        (flightItem) => flightItem.id === flight.id
+                        (flightItem) => flightItem.id === flight.id,
                     );
                     if (index > -1) {
                         Vue.set(this.flights, index, flight);

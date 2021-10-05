@@ -85,7 +85,7 @@ export default Vue.extend({
         },
         trigger(
             action: 'edit' | 'confirmRemove' | 'remove',
-            flight: FlightInterface
+            flight: FlightInterface,
         ): void {
             if (flight) {
                 switch (action) {
@@ -107,7 +107,7 @@ export default Vue.extend({
         notifyEvent(
             event: string,
             result: string,
-            flight: FlightInterface
+            flight: FlightInterface,
         ): void {
             let message = '';
             if (result === 'success') {
