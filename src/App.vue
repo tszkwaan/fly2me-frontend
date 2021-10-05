@@ -1,61 +1,60 @@
 <template>
-  <v-app id="app-container" light>
-    <navbar
-      @toggleSidebar="toggleSidebar"
-      @toggleLoginDialog="toggleLoginDialog"
-    />
-    <v-main>
-      <v-container fluid fill-height>
-        <router-view />
-      </v-container>
-    </v-main>
-      <v-footer padless app bottom absolute>
-    <v-col class="text-center" cols="12">
-      {{ new Date().getFullYear() }} — <span class="author">Tsz Kwan</span>
-    </v-col>
-  </v-footer>
-  </v-app>
+    <v-app id="app-container" light>
+        <navbar
+            @toggleSidebar="toggleSidebar"
+            @toggleLoginDialog="toggleLoginDialog"
+        />
+        <v-main>
+            <v-container fluid fill-height>
+                <router-view />
+            </v-container>
+        </v-main>
+        <v-footer padless app bottom absolute>
+            <v-col class="text-center" cols="12">
+                {{ new Date().getFullYear() }} —
+                <span class="author">Tsz Kwan</span>
+            </v-col>
+        </v-footer>
+    </v-app>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Navbar from '@/components/common/Navbar.vue';
-import MaterialIcons from 'material-icons';
+import Vue from 'vue'
+import Navbar from '@/components/common/Navbar.vue'
 
 export default Vue.extend({
-  name: 'App',
-  components: {
-    Navbar,
-    MaterialIcons
-  },
-  methods: {
-    toggleSidebar(): void {
-      this.$refs.sidebar.toggleSidebar();
+    name: 'App',
+    components: {
+        Navbar,
     },
-    toggleLoginDialog(): void {
-      this.$refs.loginDialog.toggleDialog();
+    methods: {
+        toggleSidebar(): void {
+            this.$refs.sidebar.toggleSidebar()
+        },
+        toggleLoginDialog(): void {
+            this.$refs.loginDialog.toggleDialog()
+        },
     },
-  }
-});
+})
 </script>
 
 <style scoped lang="scss">
 #app-container {
-  background-image: url("/img/bg.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  color: white;
-  text-align: center;
+    background-image: url('/img/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+    text-align: center;
 }
 .v-footer {
-  margin-top: 50px;
-  padding-left: 1rem;
-  background: none;
-  color: white;
+    margin-top: 50px;
+    padding-left: 1rem;
+    background: none;
+    color: white;
 
-  .author {
-      font-style: italic;
-  }
+    .author {
+        font-style: italic;
+    }
 }
 </style>

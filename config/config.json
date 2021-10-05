@@ -1,3 +1,3 @@
 {
-  "mockApiEndpoint": "http://localhost:3000/api/v1/"
+    "mockApiEndpoint": "http://localhost:3000/api/v1/"
 }

@@ -1,28 +1,28 @@
-import axios from "axios";
-const config = require("../../config/config.json");
-import { FlightInterface } from "../model/flight";
+import axios from 'axios'
+const config = require('../../config/config.json')
+import { FlightInterface } from '../model/flight'
 
-const apiEndpoint = `${config.mockApiEndpoint}flights`;
+const apiEndpoint = `${config.mockApiEndpoint}flights`
 
-const getMyFlightList = (listType: "future" | "history") => {
-  return axios.get(`${apiEndpoint}/${listType}`);
-};
+const getMyFlightList = (listType: 'future' | 'history') => {
+    return axios.get(`${apiEndpoint}/${listType}`)
+}
 
 const updateFlight = (flight: FlightInterface) => {
-  return axios.put(`${apiEndpoint}/update`, flight);
-};
+    return axios.put(`${apiEndpoint}/update`, flight)
+}
 
 const createFlight = (flight: FlightInterface) => {
-  return axios.post(`${apiEndpoint}`, flight);
-};
+    return axios.post(`${apiEndpoint}`, flight)
+}
 
 const deleteFlight = (id: number) => {
-  return axios.delete(`${apiEndpoint}/delete/${id}`);
-};
+    return axios.delete(`${apiEndpoint}/delete/${id}`)
+}
 
 export default {
-  getMyFlightList,
-  updateFlight,
-  createFlight,
-  deleteFlight,
-};
+    getMyFlightList,
+    updateFlight,
+    createFlight,
+    deleteFlight,
+}

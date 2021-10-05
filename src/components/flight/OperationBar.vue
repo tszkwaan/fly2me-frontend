@@ -1,43 +1,43 @@
 <template>
-  <v-layout row class="flight-operation-bar">
-    <edit-button @trigger="trigger" />
-    <delete-button @trigger="trigger" />
-  </v-layout>
+    <v-layout row class="flight-operation-bar">
+        <edit-button @trigger="trigger" />
+        <delete-button @trigger="trigger" />
+    </v-layout>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import EditButton from '@/components/common/button/EditButton.vue';
-import DeleteButton from '@/components/common/button/DeleteButton.vue';
+import Vue from 'vue'
+import EditButton from '@/components/common/button/EditButton.vue'
+import DeleteButton from '@/components/common/button/DeleteButton.vue'
 
 export default Vue.extend({
-  name: 'OperationBar',
-  components: {
-    EditButton,
-    DeleteButton,
-  },
-  methods: {
-    trigger(action: string): void {
-      this.$emit('trigger', action);
+    name: 'OperationBar',
+    components: {
+        EditButton,
+        DeleteButton,
     },
-  },
-});
+    methods: {
+        trigger(action: string): void {
+            this.$emit('trigger', action)
+        },
+    },
+})
 </script>
 
 <style type="scss">
 .flight-operation-bar {
-  flex-direction: column;
-  float: right;
+    flex-direction: column;
+    float: right;
 }
 </style>
 <style type="scss">
 .flight-box .flight-operation-bar {
-  display: none;
+    display: none;
 }
 .flight-box:hover .flight-operation-bar {
-  display: block;
+    display: block;
 }
-@media(max-width: 509px) {
+@media (max-width: 509px) {
     .flight-box .flight-operation-bar {
         display: block;
     }
