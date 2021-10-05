@@ -29,44 +29,6 @@
                     </v-list-item>
                 </v-list>
             </v-menu>
-            <!--                     
-            <template v-slot:activator="{ on, attrs }">
-                <v-toolbar-items
-                    v-if="!session.isLoggedIn"
-                    
-                >
-                    <v-btn
-                        dark
-                        v-bind="attrs"
-                        v-on="on"
-                        @click="toggleLoginDialog"
-                    >
-                        Login
-                    </v-btn>
-                </v-toolbar-items>
-            </template> -->
-            <!-- <v-toolbar-items v-if="session.isLoggedIn">
-                <v-menu offset-y>
-                    <template v-slot:activator="{ on, attrs }">
-                        <v-btn dark v-bind="attrs" v-on="on">
-                            <div class="menu__content__name">
-                                <v-avatar size="40px">
-                                    <v-gravatar
-                                        :email="session.username"
-                                        default-img="identicon"
-                                    />
-                                </v-avatar>
-                                {{ session.username }}
-                            </div>
-                        </v-btn>
-                    </template>
-                    <v-list>
-                        <v-list-item @click="logout">
-                            <v-list-item-title>Logout</v-list-item-title>
-                        </v-list-item>
-                    </v-list>
-                </v-menu>
-            </v-toolbar-items> -->
         </v-toolbar>
     </v-card>
 </template>
