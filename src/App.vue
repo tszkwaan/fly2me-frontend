@@ -22,7 +22,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import Navbar from '@/components/common/Navbar.vue';
-import LoginDialog from '@/components/user/DialogLogin';
+import LoginDialog from '@/components/user/LoginDialog.vue';
 
 export default Vue.extend({
     name: 'App',

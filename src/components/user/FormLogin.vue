@@ -30,12 +30,12 @@ export default Vue.extend({
     },
     data() {
         return {
-            user: new User(),
+            user: {}
         };
     },
     methods: {
         login(): void {
-            UserApi.login(this.user)
+            UserApi.login()
                 .then((res) => {
                     this.$session.start();
                     this.$session.set('jwt', res.data.token);

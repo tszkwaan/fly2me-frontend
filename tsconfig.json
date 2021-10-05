@@ -10,6 +10,7 @@
         "allowSyntheticDefaultImports": true,
         "strictFunctionTypes": false,
         "sourceMap": true,
+        "resolveJsonModule": true,
         "baseUrl": ".",
         "types": ["webpack-env", "mocha", "chai"],
         "paths": {
