@@ -1,0 +1,15 @@
+{
+    "fromDate": "2023-10-11",
+    "toDate": "2023-10-11",
+    "fromAirport": "SIN",
+    "toAirport": "HND",
+    "flightNum": "CX887",
+    "ticketNum": "CX1319837Ss23",
+    "fromTerminal": "T1",
+    "toTerminal": "T2",
+    "fromTime": "17:00",
+    "toTime": "22:00",
+    "airline": "Japan Airlines",
+    "hotel": "Shinagawa",
+    "id": "100"
+  }
