@@ -15,27 +15,31 @@
                 <span class="author">Tsz Kwan</span>
             </v-col>
         </v-footer>
+        <login-dialog
+          ref="loginDialog"/>
     </v-app>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import Navbar from '@/components/common/Navbar.vue'
+import Vue from 'vue';
+import Navbar from '@/components/common/Navbar.vue';
+import LoginDialog from '@/components/user/DialogLogin'
 
 export default Vue.extend({
     name: 'App',
     components: {
         Navbar,
+        LoginDialog
     },
     methods: {
         toggleSidebar(): void {
-            this.$refs.sidebar.toggleSidebar()
+            this.$refs.sidebar.toggleSidebar();
         },
         toggleLoginDialog(): void {
-            this.$refs.loginDialog.toggleDialog()
+            this.$refs.loginDialog.toggleDialog();
         },
     },
-})
+});
 </script>
 
 <style scoped lang="scss">

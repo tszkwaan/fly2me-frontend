@@ -89,9 +89,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import FlightOperationBar from '@/components/flight/OperationBar.vue'
-import CollabUser from '@/components/collab/CollabUser.vue'
+import Vue from 'vue';
+import FlightOperationBar from '@/components/flight/OperationBar.vue';
+import CollabUser from '@/components/collab/CollabUser.vue';
 
 export default Vue.extend({
     name: 'FlightBox',
@@ -107,10 +107,10 @@ export default Vue.extend({
     },
     methods: {
         trigger(action: string) {
-            this.$emit('trigger', action, this.flight)
+            this.$emit('trigger', action, this.flight);
         },
     },
-})
+});
 </script>
 
 <style lang="scss" scoped>

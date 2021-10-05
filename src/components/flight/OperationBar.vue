@@ -6,9 +6,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import EditButton from '@/components/common/button/EditButton.vue'
-import DeleteButton from '@/components/common/button/DeleteButton.vue'
+import Vue from 'vue';
+import EditButton from '@/components/common/button/EditButton.vue';
+import DeleteButton from '@/components/common/button/DeleteButton.vue';
 
 export default Vue.extend({
     name: 'OperationBar',
@@ -18,10 +18,10 @@ export default Vue.extend({
     },
     methods: {
         trigger(action: string): void {
-            this.$emit('trigger', action)
+            this.$emit('trigger', action);
         },
     },
-})
+});
 </script>
 
 <style type="scss">

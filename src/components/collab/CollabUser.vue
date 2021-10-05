@@ -11,7 +11,7 @@
     </div>
 </template>
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
 
 export default Vue.extend({
     name: 'collab-user',
@@ -37,10 +37,10 @@ export default Vue.extend({
     },
     computed: {
         avatarSize(): string {
-            return this.size === 'small' ? '2rem' : '3rem'
+            return this.size === 'small' ? '2rem' : '3rem';
         },
     },
-})
+});
 </script>
 
 <style scoped lang="scss">

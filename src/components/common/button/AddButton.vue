@@ -10,16 +10,16 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
 
 export default Vue.extend({
     name: 'AddButton',
     methods: {
         onClick(): void {
-            this.$emit('add')
+            this.$emit('add');
         },
     },
-})
+});
 </script>
 
 <style scoped>

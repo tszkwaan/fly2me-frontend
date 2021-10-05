@@ -17,13 +17,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import FlightForm from '@/components/flight/FlightForm.vue'
-import SaveButton from '@/components/common/button/SaveButton.vue'
-import Flight from '@/model/flight.ts'
+import Vue from 'vue';
+import FlightForm from '@/components/flight/FlightForm.vue';
+import SaveButton from '@/components/common/button/SaveButton.vue';
+import Flight from '@/model/flight.ts';
 
-import { cloneDeep } from 'lodash'
-import { FlightInterface } from '../../model/flight'
+import { cloneDeep } from 'lodash';
+import { FlightInterface } from '../../model/flight';
 
 export default Vue.extend({
     name: 'AddFlightDialog',
@@ -35,45 +35,45 @@ export default Vue.extend({
     data() {
         return {
             isDisplay: false,
-            originalFlight: new Flight(),
+            originalFlight: {},
             formMode: 'create',
-        }
+        };
     },
     methods: {
         saveFlight(): void {
-            this.$refs.flightForm.saveFlight()
+            this.$refs.flightForm.saveFlight();
         },
         showDialog(flight: FlightInterface, mode: string): void {
             if (mode) {
-                this.formMode = mode
+                this.formMode = mode;
             }
-            this.originalFlight = cloneDeep(flight)
-            this.isDisplay = true
+            this.originalFlight = cloneDeep(flight);
+            this.isDisplay = true;
         },
         resetFormMode(): void {
-            this.formMode = 'create'
+            this.formMode = 'create';
         },
         resetDialog(): void {
-            this.resetFormMode()
-            this.originalFlight = new Flight()
+            this.resetFormMode();
+            this.originalFlight = {};
         },
         notifyEvent(event, result, flight): void {
-            this.isDisplay = false
-            this.$emit('notifyEvent', event, result, flight)
+            this.isDisplay = false;
+            this.$emit('notifyEvent', event, result, flight);
         },
         addFlight(): void {
-            this.resetFormMode()
-            this.isDisplay = true
+            this.resetFormMode();
+            this.isDisplay = true;
         },
     },
     watch: {
         isDisplay(): void {
             if (!this.isDisplay) {
-                this.resetDialog()
+                this.resetDialog();
             }
         },
     },
-})
+});
 </script>
 
 <style scoped lang="scss">

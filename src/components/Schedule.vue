@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import CalendarView from 'vue-simple-calendar'
+import CalendarView from 'vue-simple-calendar';
 // require('vue-simple-calendar/dist/static/css/default.css')
 
 export default {
@@ -38,24 +38,24 @@ export default {
         return {
             thisShowDate: new Date(),
             nextShowDate: undefined,
-        }
+        };
     },
     methods: {
         setThisShowDate(date) {
-            this.thisShowDate = date
+            this.thisShowDate = date;
         },
         setNextShowDate(date) {
-            this.nextShowDate = date
+            this.nextShowDate = date;
         },
     },
     mounted() {
-        let today = new Date()
+        let today = new Date();
         this.nextShowDate =
             today.getMonth() === 11
                 ? new Date(today.getFullYear() + 1, 0, 1)
-                : new Date(today.getFullYear(), today.getMonth() + 1, 1)
+                : new Date(today.getFullYear(), today.getMonth() + 1, 1);
     },
-}
+};
 </script>
 
 <style>

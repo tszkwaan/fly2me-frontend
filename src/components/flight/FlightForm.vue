@@ -209,16 +209,16 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import SaveButton from '@/components/common/button/SaveButton.vue'
-import ContinueButton from '@/components/common/button/ContinueButton.vue'
+import Vue from 'vue';
+import SaveButton from '@/components/common/button/SaveButton.vue';
+import ContinueButton from '@/components/common/button/ContinueButton.vue';
 
-import Flight from '@/model/flight.ts'
-import FlightApi from '@/api/flight.ts'
-import UserApi from '@/api/user.ts'
-import { mapState } from 'vuex'
-import { cloneDeep } from 'lodash'
-import { FlightInterface } from '../../model/flight'
+import Flight from '@/model/flight.ts';
+import FlightApi from '@/api/flight.ts';
+import UserApi from '@/api/user.ts';
+import { mapState } from 'vuex';
+import { cloneDeep } from 'lodash';
+import { FlightInterface } from '../../model/flight';
 
 export default Vue.extend({
     name: 'FlightForm',
@@ -237,15 +237,14 @@ export default Vue.extend({
         },
         originalFlight: {
             type: Object,
-            deafult: new Flight(),
         },
     },
-    data() {
+    data(outerThis = this) {
         return {
-            flight: new Flight(),
+            flight: {},
             editableFlight: {
                 ...cloneDeep(this.originalFlight),
-                fromDateFormatted: this.formatDate(
+                fromDateFormatted: outerThis.formatDate(
                     this.originalFlight.fromDate
                 ),
             },
@@ -254,7 +253,7 @@ export default Vue.extend({
             airports: [],
             terminals: [],
             step: 1,
-        }
+        };
     },
     computed: {
         ...mapState(['session']),
@@ -262,77 +261,87 @@ export default Vue.extend({
     methods: {
         formatDate(date: string): string {
             if (!date) {
-                return ''
+                return '';
             }
-            const [year, month, day] = date.split('-')
-            return `${month}/${day}/${year}`
+            const [year, month, day] = date.split('-');
+            return `${month}/${day}/${year}`;
         },
         setFieldsFromFlightRecord(existingFlight: FlightInterface): void {
-            this.editableFlight.fromAirport = existingFlight.fromAirport
-            this.editableFlight.toAirport = existingFlight.toAirport
-            this.editableFlight.fromTerminal = existingFlight.fromTerminal
-            this.editableFlight.toTerminal = existingFlight.toTerminal
-            this.editableFlight.fromTime = existingFlight.fromTime
-            this.editableFlight.toTime = existingFlight.toTime
-            this.editableFlight.airline = existingFlight.airline
+            this.editableFlight.fromAirport = existingFlight.fromAirport;
+            this.editableFlight.toAirport = existingFlight.toAirport;
+            this.editableFlight.fromTerminal = existingFlight.fromTerminal;
+            this.editableFlight.toTerminal = existingFlight.toTerminal;
+            this.editableFlight.fromTime = existingFlight.fromTime;
+            this.editableFlight.toTime = existingFlight.toTime;
+            this.editableFlight.airline = existingFlight.airline;
         },
         saveFlight(): void {
             if (this.formMode === 'create') {
                 FlightApi.createFlight(this.editableFlight)
                     .then((res) => {
-                        this.$emit('notifyEvent', 'create', 'success', res.data)
+                        this.$emit(
+                            'notifyEvent',
+                            'create',
+                            'success',
+                            res.data
+                        );
                     })
                     .catch((err) => {
-                        this.$emit('notifyEvent', 'create', 'fail')
-                    })
+                        this.$emit('notifyEvent', 'create', 'fail');
+                    });
             } else {
                 FlightApi.updateFlight(this.editableFlight)
                     .then((res) => {
-                        this.$emit('notifyEvent', 'update', 'success', res.data)
+                        this.$emit(
+                            'notifyEvent',
+                            'update',
+                            'success',
+                            res.data
+                        );
                     })
                     .catch((err) => {
-                        this.$emit('notifyEvent', 'update', 'fail')
-                    })
+                        this.$emit('notifyEvent', 'update', 'fail');
+                    });
             }
         },
         incrementStep(): void {
-            this.step++
+            this.step++;
         },
         triggerSave(): void {
-            this.saveFlight()
+            this.saveFlight();
         },
         resetStep(): void {
-            this.step = 1
+            this.step = 1;
         },
     },
     watch: {
         'editableFlight.fromDate'() {
             this.editableFlight.fromDateFormatted = this.formatDate(
                 this.editableFlight.fromDate
-            )
+            );
         },
         'editableFlight.flightNum'() {
-            const _this = this
-            let existingFlight = this.flights.find(
-                (flight) => flight.flightNum === _this.editableFlight.flightNum
-            )
-            if (existingFlight) {
+            // const _this = this;
+            // let existingFlight = this.flights.find(
+            //     (flight) => flight.flightNum === _this.editableFlight.flightNum
+            // );
+            // if (existingFlight) {
                 // _this.setFieldsFromFlightRecord(existingFlight);
-            }
+            // }
         },
         originalFlight: {
             deep: true,
             handler(value, prevVal) {
                 if (value.id === 0) {
-                    value.userId = this.users[0].id
+                    value.userId = this.users[0].id;
                 }
-                this.flight = cloneDeep(value)
-                this.editableFlight = cloneDeep(this.flight)
-                this.resetStep()
+                this.flight = cloneDeep(value);
+                this.editableFlight = cloneDeep(this.flight);
+                this.resetStep();
             },
         },
     },
-})
+});
 </script>
 
 <style lang="scss" scoped>

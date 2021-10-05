@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
 
 export default Vue.extend({
     name: 'DeleteButton',
@@ -22,10 +22,10 @@ export default Vue.extend({
     },
     methods: {
         onClick(): void {
-            this.$emit('trigger', 'confirmRemove')
+            this.$emit('trigger', 'confirmRemove');
         },
     },
-})
+});
 </script>
 
 <style scoped></style>

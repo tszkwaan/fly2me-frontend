@@ -1,8 +1,8 @@
 export default class Session {
-    public token: string
-    public username: string
-    public isLoggedIn: boolean
-    public userId: number
+    public token: string;
+    public username: string;
+    public isLoggedIn: boolean;
+    public userId: number;
 
     constructor(
         token: string,
@@ -10,9 +10,9 @@ export default class Session {
         isLoggedIn: boolean,
         userId: number
     ) {
-        this.token = token
-        this.username = username
-        this.isLoggedIn = isLoggedIn
-        this.userId = userId
+        this.token = token;
+        this.username = username;
+        this.isLoggedIn = isLoggedIn;
+        this.userId = userId;
     }
 }

@@ -49,14 +49,14 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import FlightListArea from '@/components/flight/FlightListArea.vue'
-import FlightFormDialog from '@/components/flight/AddFlightDialog.vue'
-import ConfirmDeleteDialog from '@/components/common/dialog/ConfirmDeleteDialog.vue'
-import Snackbar from '@/components/common/Snackbar.vue'
-import AddButton from '@/components/common/button/AddButton.vue'
-import { FlightInterface } from '@/model/flight.ts'
-import { mapState } from 'vuex'
+import Vue from 'vue';
+import FlightListArea from '@/components/flight/FlightListArea.vue';
+import FlightFormDialog from '@/components/flight/AddFlightDialog.vue';
+import ConfirmDeleteDialog from '@/components/common/dialog/ConfirmDeleteDialog.vue';
+import Snackbar from '@/components/common/Snackbar.vue';
+import AddButton from '@/components/common/button/AddButton.vue';
+import { FlightInterface } from '@/model/flight.ts';
+import { mapState } from 'vuex';
 
 export default Vue.extend({
     name: 'flights-page',
@@ -72,19 +72,16 @@ export default Vue.extend({
             isDrawerDisplay: false,
             tabs: ['Future', 'History'],
             activeTab: null,
-        }
+        };
     },
     computed: {
-        ...mapState({
-            session: (state) => state.session,
-        }),
         getListType(): 'future' | 'history' {
-            return this.activeTab === 0 ? 'future' : 'history'
+            return this.activeTab === 0 ? 'future' : 'history';
         },
     },
     methods: {
         toggleDrawer(): void {
-            this.isDrawerDisplay = !this.isDrawerDisplay
+            this.isDrawerDisplay = !this.isDrawerDisplay;
         },
         trigger(
             action: 'edit' | 'confirmRemove' | 'remove',
@@ -93,41 +90,41 @@ export default Vue.extend({
             if (flight) {
                 switch (action) {
                     case 'edit':
-                        this.$refs.flightFormDialog.showDialog(flight, 'edit')
-                        break
+                        this.$refs.flightFormDialog.showDialog(flight, 'edit');
+                        break;
                     case 'confirmRemove':
-                        this.$refs.confirmDeleteDialog.toggleDialog(flight)
-                        break
+                        this.$refs.confirmDeleteDialog.toggleDialog(flight);
+                        break;
                     case 'remove':
-                        this.$refs.flightListArea.removeFlight(flight)
-                        break
+                        this.$refs.flightListArea.removeFlight(flight);
+                        break;
                 }
             }
         },
         showSnackbar(message: string): void {
-            this.$refs.snackbar.display(message)
+            this.$refs.snackbar.display(message);
         },
         notifyEvent(
             event: string,
             result: string,
             flight: FlightInterface
         ): void {
-            let message = ''
+            let message = '';
             if (result === 'success') {
-                this.$refs.flightListArea.setFlights(event, flight)
+                this.$refs.flightListArea.setFlights(event, flight);
                 message = `Flight ${
                     event === 'create' ? 'created' : 'updated'
-                }!`
+                }!`;
             } else {
-                message = `Failed to ${event} flight`
+                message = `Failed to ${event} flight`;
             }
-            this.showSnackbar(message)
+            this.showSnackbar(message);
         },
         showAddFlightDialog(): void {
-            this.$refs.flightFormDialog.addFlight()
+            this.$refs.flightFormDialog.addFlight();
         },
     },
-})
+});
 </script>
 
 <style>

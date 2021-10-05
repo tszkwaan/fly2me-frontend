@@ -13,9 +13,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import FlightBox from '@/components/flight/FlightBox.vue'
-import { FlightInterface } from '@/model/flight.ts'
+import Vue from 'vue';
+import FlightBox from '@/components/flight/FlightBox.vue';
+import { FlightInterface } from '@/model/flight.ts';
 
 export default Vue.extend({
     name: 'FlightList',
@@ -29,10 +29,10 @@ export default Vue.extend({
     },
     methods: {
         trigger(action: string, flight: FlightInterface): void {
-            this.$emit('trigger', action, flight)
+            this.$emit('trigger', action, flight);
         },
     },
-})
+});
 </script>
 
 <style scoped lang="scss">

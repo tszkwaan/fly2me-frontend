@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
 
 export default Vue.extend({
     name: 'SaveButton',
@@ -26,10 +26,10 @@ export default Vue.extend({
     },
     methods: {
         onClick(): void {
-            this.$emit('save')
+            this.$emit('save');
         },
     },
-})
+});
 </script>
 
 <style scoped></style>

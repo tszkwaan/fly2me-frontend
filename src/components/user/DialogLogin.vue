@@ -7,61 +7,47 @@
                     <login-form ref="loginForm" @closeDialog="toggleDialog" />
                 </v-card-text>
                 <v-card-actions>
-                    <v-layout row wrap>
-                        <v-flex xs12 sm4>
-                            <v-btn block @click.native="toggleDialog">
-                                Cancel
-                            </v-btn>
-                        </v-flex>
-                        <v-flex sm4 />
-                        <v-flex xs12 sm4>
+                        <v-flex xs12 >
                             <v-btn
+                                block
                                 color="primary"
                                 @click.native="onLoginButtonClick"
                             >
                                 Login
                             </v-btn>
                         </v-flex>
-                    </v-layout>
                 </v-card-actions>
             </v-card>
         </v-dialog>
     </v-layout>
 </template>
 
-<script>
-import LoginForm from '@/components/user/FormLogin.vue'
+<script lang="ts">
+import Vue from 'vue';
+import LoginForm from '@/components/user/FormLogin.vue';
 
-export default {
+export default Vue.extend({
     name: 'LoginDialog',
     components: {
         LoginForm,
-    },
+    }, 
     data() {
         return {
             dialog: false,
-        }
+        };
     },
     methods: {
-        toggleDialog(value = !this.dialog) {
-            this.dialog = value
+        toggleDialog(value: boolean): void {
+            this.dialog = value;
         },
-        onLoginButtonClick() {
-            this.$refs.loginForm.login()
+        onLoginButtonClick(): void {
+            this.$refs.loginForm.login();
         },
     },
-}
+});
 </script>
 
 <style scoped>
-.v-dialog {
-    background: linear-gradient(
-        rgba(255, 255, 255, 0.9),
-        rgba(255, 255, 255, 0.9)
-    );
-    min-height: 400px;
-}
-
 #card-login-form {
     padding: 25px 30px;
 }

@@ -6,10 +6,12 @@
             </v-toolbar-title>
             <v-spacer />
             <v-toolbar-items>
-                <v-btn v-if="!session.isLoggedIn" @click="toggleLoginDialog">
-                    Login
-                </v-btn>
-                <v-menu offset-y>
+                <template v-if="!session.isLoggedIn">
+                    <v-btn dark v-bind="attrs" v-on="on" @click="toggleLoginDialog">
+                        Login
+                    </v-btn>
+                </template>
+                <v-menu v-else offset-y>
                     <template v-slot:activator="{ on, attrs }">
                         <v-btn dark v-bind="attrs" v-on="on">
                             <div class="menu__content__name">
@@ -35,9 +37,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import Session from '@/model/session.ts'
-import { mapState } from 'vuex'
+import Vue from 'vue';
+import Session from '@/model/session.ts';
+import { mapState } from 'vuex';
 
 export default Vue.extend({
     name: 'Navbar',
@@ -50,18 +52,18 @@ export default Vue.extend({
     },
     methods: {
         toggleSidebar(): void {
-            this.$emit('toggleSidebar')
+            this.$emit('toggleSidebar');
         },
         toggleLoginDialog(): void {
-            this.$emit('toggleLoginDialog')
+            this.$emit('toggleLoginDialog');
         },
         logout(): void {
-            this.$store.commit('setSession', new Session())
-            this.$session.destroy()
-            this.$router.push('/')
+            this.$store.commit('setSession', new Session('', '', false, -1));
+            this.$session.destroy();
+            this.$router.push('/');
         },
     },
-})
+});
 </script>
 
 <style lang="scss" scoped>

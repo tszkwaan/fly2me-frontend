@@ -1,10 +1,10 @@
-import axios from 'axios'
-const config = require('../../config/config.json')
+import axios from 'axios';
+import config from '../../config/config.json'
 
 const login = async () => {
-    return axios.post(`${config.mockApiEndpoint}user/login`)
-}
+    return axios.post(`${config.mockApiEndpoint}users/login`);
+};
 
 export default {
     login,
-}
+};

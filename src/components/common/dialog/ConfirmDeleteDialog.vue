@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
 
 export default Vue.extend({
     name: 'DeleteDialopg',
@@ -30,19 +30,19 @@ export default Vue.extend({
         return {
             isShow: false,
             component: undefined,
-        }
+        };
     },
     methods: {
         confirmDelete(): void {
-            this.isShow = false
-            this.$emit('trigger', 'remove', this.component)
+            this.isShow = false;
+            this.$emit('trigger', 'remove', this.component);
         },
         toggleDialog(component: object): void {
-            this.component = component
-            this.isShow = !this.isShow
+            this.component = component;
+            this.isShow = !this.isShow;
         },
     },
-})
+});
 </script>
 
 <style></style>
