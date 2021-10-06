@@ -1,9 +1,7 @@
 <template>
     <div class="collab-user" :style="{ color: user.color }">
-        <v-avatar size="20px">
-            <v-gravatar :email="user.name" default-img="identicon" />
-        </v-avatar>
-        <div>
+        <img :src="user.image_url" alt="user icon" :class="`${size}`" />
+        <div v-if="showName">
             <div class="info-text-name">
                 {{ user.name }}
             </div>
@@ -20,7 +18,7 @@ export default Vue.extend({
             type: Object,
             required: true,
         },
-        showLeaveInfo: {
+        showName: {
             type: Boolean,
             required: false,
             default: true,
@@ -35,11 +33,7 @@ export default Vue.extend({
             default: 'right',
         },
     },
-    computed: {
-        avatarSize(): string {
-            return this.size === 'small' ? '2rem' : '3rem';
-        },
-    },
+    computed: {},
 });
 </script>
 
@@ -51,6 +45,15 @@ export default Vue.extend({
 
     &:hover {
         cursor: pointer;
+    }
+
+    img {
+        border-radius: 50%;
+        width: 100%;
+
+        &.small {
+            width: 25px;
+        }
     }
 }
 

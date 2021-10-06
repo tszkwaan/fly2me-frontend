@@ -16,7 +16,7 @@
                             <collab-user
                                 v-if="flight.user"
                                 :user="flight.user"
-                                :showLeaveInfo="false"
+                                size="small"
                             />
                         </v-flex>
                     </v-layout>

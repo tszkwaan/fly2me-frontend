@@ -84,7 +84,7 @@ export default Vue.extend({
             this.isDrawerDisplay = !this.isDrawerDisplay;
         },
         trigger(
-            action: 'edit' | 'confirmRemove' | 'remove',
+            action: 'edit' | 'confirmRemove' | 'remove' | 'share',
             flight: FlightInterface,
         ): void {
             if (flight) {
@@ -97,6 +97,9 @@ export default Vue.extend({
                         break;
                     case 'remove':
                         this.$refs.flightListArea.removeFlight(flight);
+                        break;
+                    case 'share':
+                        // this.shareFlight(flight);
                         break;
                 }
             }

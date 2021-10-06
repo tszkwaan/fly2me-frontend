@@ -12,14 +12,13 @@
             <v-menu v-else offset-y>
                 <template v-slot:activator="{ on, attrs }">
                     <v-btn dark v-bind="attrs" v-on="on">
-                        <div class="menu__content__name">
-                            <v-avatar size="40px">
-                                <v-gravatar
-                                    :email="session.username"
-                                    default-img="identicon"
-                                />
-                            </v-avatar>
-                            {{ session.username }}
+                        <div class="menu__content__name row">
+                            <div>
+                                <img :src="session.imageUrl" alt="user icon" />
+                            </div>
+                            <div class="username">
+                                {{ session.username }}
+                            </div>
                         </div>
                     </v-btn>
                 </template>
@@ -36,11 +35,15 @@
 <script lang="ts">
 import Vue from 'vue';
 import Session from '@/model/session.ts';
+import CollabUser from '@/components/collab/CollabUser.vue';
+
 import { mapState } from 'vuex';
 
 export default Vue.extend({
     name: 'Navbar',
-    components: {},
+    components: {
+        CollabUser,
+    },
     data: () => ({
         drawer: true,
     }),
@@ -55,7 +58,10 @@ export default Vue.extend({
             this.$emit('toggleLoginDialog');
         },
         logout(): void {
-            this.$store.commit('setSession', new Session('', '', false, -1));
+            this.$store.commit(
+                'setSession',
+                new Session('', '', false, -1, ''),
+            );
             this.$session.destroy();
             this.$router.push('/');
         },
@@ -71,6 +77,17 @@ export default Vue.extend({
 .menu__content__name {
     color: white;
     text-transform: uppercase;
+
+    img {
+        width: 50px;
+        border-radius: 50%;
+    }
+
+    .username {
+        display: flex;
+        align-items: center;
+        margin-left: 5px;
+    }
 }
 .theme--dark.v-btn.v-btn--has-bg {
     background: transparent;

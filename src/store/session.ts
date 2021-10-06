@@ -5,12 +5,14 @@ interface State {
     userId: number | null;
     token: string;
     isLoggedIn: boolean;
+    imageUrl: string;
 }
 
 export default {
     state: {
         username: '',
         userId: undefined,
+        imageUrl: '',
         token: '',
         isLoggedIn: false,
     },
@@ -20,6 +22,7 @@ export default {
             state.token = session.token;
             state.isLoggedIn = session.isLoggedIn;
             state.userId = session.userId;
+            state.imageUrl = session.imageUrl;
         },
     },
 };
