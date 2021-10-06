@@ -14,8 +14,7 @@ import Vue from 'vue';
 
 export default Vue.extend({
     name: 'EditButton',
-    props: {
-    },
+    props: {},
     methods: {
         onClick(): void {
             this.$emit('trigger', 'edit');

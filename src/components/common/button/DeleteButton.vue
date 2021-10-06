@@ -14,8 +14,7 @@ import Vue from 'vue';
 
 export default Vue.extend({
     name: 'DeleteButton',
-    props: {
-    },
+    props: {},
     methods: {
         onClick(): void {
             this.$emit('trigger', 'confirmRemove');
