@@ -3,7 +3,6 @@ import { shallowMount } from '@vue/test-utils';
 import ContinueButton from '@/components/common/button/ContinueButton.vue';
 
 describe('ContinueButton.vue', () => {
-
     let wrapper;
 
     beforeEach(() => {
@@ -16,5 +15,4 @@ describe('ContinueButton.vue', () => {
         expect(Array.isArray(emitted)).to.equal(true);
         expect(emitted.length).to.equal(0);
     });
-
 });

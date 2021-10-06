@@ -1,18 +1,18 @@
 import { expect } from 'chai';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Navbar from '@/components/common/Navbar.vue';
-import Vuex from "vuex"
-import { toHaveBeenCalledWith } from 'vue-jest'
+import Vuex from 'vuex';
+import { toHaveBeenCalledWith } from 'vue-jest';
 
-const localVue = createLocalVue()
-localVue.use(Vuex)
+const localVue = createLocalVue();
+localVue.use(Vuex);
 
 const sessionStore = {
     state: {
         username: '',
         userId: undefined,
         token: '',
-        isLoggedIn: false
+        isLoggedIn: false,
     },
     mutations: {
         setSession(state, session) {
@@ -21,23 +21,22 @@ const sessionStore = {
             state.isLoggedIn = session.isLoggedIn;
             state.userId = session.userId;
         },
-    }
-}
+    },
+};
 
 const store = new Vuex.Store({
     modules: {
-        session: sessionStore
-    }
-})
+        session: sessionStore,
+    },
+});
 
 describe('Navbar.vue', () => {
-
     let wrapper;
 
     beforeEach(() => {
         wrapper = shallowMount(Navbar, {
             store,
-            localVue
+            localVue,
         });
     });
 

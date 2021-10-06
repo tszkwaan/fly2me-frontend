@@ -6,23 +6,22 @@ import { isEqual } from 'lodash';
 import mockFlight from '../../mock/flight.json';
 
 describe('ConfirmDeleteDialog.vue', () => {
-
     let wrapper;
     const componentObj = {
-        test: true
-    }
+        test: true,
+    };
 
     beforeEach(() => {
         wrapper = shallowMount(ConfirmDeleteDialog, {
             propsData: {
-                componentType: 'flight'
+                componentType: 'flight',
             },
             data() {
                 return {
                     isShow: true,
-                    component: componentObj
-                }
-            }
+                    component: componentObj,
+                };
+            },
         });
     });
 
@@ -45,5 +44,4 @@ describe('ConfirmDeleteDialog.vue', () => {
         expect(isEqual(wrapper.vm.component, mockFlight)).to.equal(true);
         expect(wrapper.vm.isShow).to.equal(false);
     });
-
 });

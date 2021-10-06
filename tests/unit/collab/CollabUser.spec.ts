@@ -3,7 +3,6 @@ import { shallowMount } from '@vue/test-utils';
 import CollabUser from '@/components/collab/CollabUser.vue';
 
 describe('CollabUser.vue', () => {
-
     let wrapper;
 
     beforeEach(() => {
@@ -12,14 +11,13 @@ describe('CollabUser.vue', () => {
                 size: 'small',
                 user: {
                     name: 'tszkwaan',
-                    color: 'red'
-                }
-            }
+                    color: 'red',
+                },
+            },
         });
     });
 
     it('returns size for small avatar', () => {
         expect(wrapper.vm.avatarSize).to.equal('2rem');
     });
-
 });

@@ -3,7 +3,6 @@ import { shallowMount } from '@vue/test-utils';
 import SaveButton from '@/components/common/button/SaveButton.vue';
 
 describe('SaveButton.vue', () => {
-
     let wrapper;
 
     beforeEach(() => {
@@ -16,5 +15,4 @@ describe('SaveButton.vue', () => {
         expect(Array.isArray(emitted)).to.equal(true);
         expect(emitted.length).to.equal(0);
     });
-
 });

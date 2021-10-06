@@ -3,7 +3,6 @@ import { shallowMount } from '@vue/test-utils';
 import AddButton from '@/components/common/button/AddButton.vue';
 
 describe('AddButton.vue', () => {
-
     let wrapper;
 
     beforeEach(() => {
@@ -16,5 +15,4 @@ describe('AddButton.vue', () => {
         expect(Array.isArray(emitted)).to.equal(true);
         expect(emitted.length).to.equal(0);
     });
-
 });

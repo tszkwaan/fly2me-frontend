@@ -3,7 +3,6 @@ import { shallowMount } from '@vue/test-utils';
 import DeleteButton from '@/components/common/button/DeleteButton.vue';
 
 describe('DeleteButton.vue', () => {
-
     let wrapper;
 
     beforeEach(() => {
@@ -17,5 +16,4 @@ describe('DeleteButton.vue', () => {
         expect(emitted.length).to.equal(1);
         expect(emitted[0]).to.equal('confirmRemove');
     });
-
 });
