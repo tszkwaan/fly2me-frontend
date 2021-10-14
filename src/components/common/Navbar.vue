@@ -2,8 +2,19 @@
     <v-card>
         <v-toolbar class="transparent">
             <v-toolbar-title>
-                <img id="logo" src="/img/logo.png" alt="Fly2me logo" />
+                <router-link :to="{name: 'CalendarPage'}">
+                    <img id="logo" src="/img/logo.png" alt="Fly2me logo" />
+                </router-link>
             </v-toolbar-title>
+            
+            <ul class='main-nav'>
+                <li>
+                    <router-link :to="{name: 'FlightsPage'}">
+                        <v-btn dark class="nav-btn">Flights</v-btn>
+                    </router-link>
+                </li>
+            </ul>
+
             <v-spacer />
 
             <v-btn v-if="!session.isLoggedIn" dark @click="toggleLoginDialog">
@@ -92,5 +103,16 @@ export default Vue.extend({
 .theme--dark.v-btn.v-btn--has-bg {
     background: transparent;
     box-shadow: unset;
+}
+.main-nav {
+    list-style: none;
+    display: inline;
+    
+    a {
+        text-decoration: none;
+    }
+}
+.nav-btn {
+    color: #fff;
 }
 </style>
