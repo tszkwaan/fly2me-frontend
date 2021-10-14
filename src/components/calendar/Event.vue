@@ -13,7 +13,7 @@
                         size="small"
                     ></collab-user>
                 </v-col>
-                <v-col cols="10">
+                <v-col cols="10" class="d-none d-sm-block">
                     <div>{{ fromTime }} - {{ toTime }}</div>
                     <div>{{ fromAirport }} -> {{ toAirport }}</div>
                 </v-col>
@@ -67,5 +67,10 @@ export default Vue.extend({
 .col-2 {
     display: flex;
     align-items: center;
+}
+</style>
+<style>
+.collab-user {
+    margin-right: 5px;
 }
 </style>
