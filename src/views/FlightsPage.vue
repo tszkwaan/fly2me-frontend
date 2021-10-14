@@ -99,7 +99,7 @@ export default Vue.extend({
                         this.$refs.flightListArea.removeFlight(flight);
                         break;
                     case 'share':
-                        // this.shareFlight(flight);
+                        this.shareFlight(flight);
                         break;
                 }
             }
@@ -125,6 +125,14 @@ export default Vue.extend({
         },
         showAddFlightDialog(): void {
             this.$refs.flightFormDialog.addFlight();
+        },
+        shareFlight(flight) {
+            const LINE_BREAK = '%0a';
+            const flightContent = `Checkout my flight information!${LINE_BREAK}` +
+            `${flight.fromDate} ${flight.fromTime}-${flight.toTime}${LINE_BREAK}` +
+            `${flight.fromAirport}-${flight.toAirport} (${flight.flightNum})`;
+            const url = `https://api.whatsapp.com/send?text=${flightContent}`;
+            window.open(url, '_blank');
         },
     },
 });

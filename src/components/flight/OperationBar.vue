@@ -1,5 +1,6 @@
 <template>
     <v-layout row class="flight-operation-bar">
+        <share-button @trigger="trigger" />
         <edit-button @trigger="trigger" />
         <delete-button @trigger="trigger" />
     </v-layout>
@@ -7,6 +8,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import ShareButton from '@/components/common/button/ShareButton.vue';
 import EditButton from '@/components/common/button/EditButton.vue';
 import DeleteButton from '@/components/common/button/DeleteButton.vue';
 
@@ -15,9 +17,11 @@ export default Vue.extend({
     components: {
         EditButton,
         DeleteButton,
+        ShareButton,
     },
     methods: {
         trigger(action: string): void {
+            console.log('in op bar onclick')
             this.$emit('trigger', action);
         },
     },
