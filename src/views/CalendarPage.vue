@@ -1,6 +1,6 @@
 <template>
     <v-layout id="calendar-container" row wrap justify-center>
-        <v-flex class="col-md-8 col-sm-12 col-xs-12">
+        <v-flex class="col-md-11 col-sm-12 col-xs-12">
             <calendar :flights="displayFlights" />
         </v-flex>
     </v-layout>
@@ -9,10 +9,10 @@
 <script lang="ts">
 import Vue from 'vue';
 import Calendar from '@/components/Calendar.vue';
-import Flight from '@/model/flight.ts';
-import FlightApi from '@/api/flight.ts';
-import User from '@/model/flight.ts';
-import UserApi from '@/api/user.ts';
+import Flight from '@/model/flight';
+import FlightApi from '@/api/flight';
+import User from '@/model/flight';
+import UserApi from '@/api/user';
 import { FlightInterface } from '../model/flight';
 
 export default Vue.extend({

@@ -1,5 +1,5 @@
 <template>
-    <div class="collab-user" :style="{ color: user.color }">
+    <div class="collab-user">
         <img :src="user.image_url" alt="user icon" :class="`${size}`" />
         <div v-if="showName">
             <div class="info-text-name">
@@ -52,7 +52,7 @@ export default Vue.extend({
         width: 100%;
 
         &.small {
-            width: 25px;
+            width: 34px;
         }
     }
 }

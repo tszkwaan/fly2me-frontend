@@ -2,7 +2,7 @@
     <div
         :class="event.classes"
         class="cv-day cv-item"
-        :style="`background: white;`"
+        :style="`color: ${user.color}; border: 2px solid ${user.color}; background: #fff;`"
     >
         <v-container>
             <v-row>
@@ -59,6 +59,7 @@ export default Vue.extend({
 <style scoped lang="scss">
 .cv-item {
     top: 30px;
+    font-weight: 500;
 }
 .col {
     padding: 0;
