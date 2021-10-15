@@ -55,6 +55,7 @@
                             editableFlight.flightNum =
                                 editableFlight.flightNum.toUpperCase()
                         "
+                        @blur="onFlightNumBlur"
                     />
 
                     <v-text-field
@@ -266,14 +267,14 @@ export default Vue.extend({
             const [year, month, day] = date.split('-');
             return `${month}/${day}/${year}`;
         },
-        setFieldsFromFlightRecord(existingFlight: FlightInterface): void {
-            this.editableFlight.fromAirport = existingFlight.fromAirport;
-            this.editableFlight.toAirport = existingFlight.toAirport;
-            this.editableFlight.fromTerminal = existingFlight.fromTerminal;
-            this.editableFlight.toTerminal = existingFlight.toTerminal;
-            this.editableFlight.fromTime = existingFlight.fromTime;
-            this.editableFlight.toTime = existingFlight.toTime;
-            this.editableFlight.airline = existingFlight.airline;
+        setFieldsFromFlightTemplate(flightTemplate: FlightInterface): void {
+            Vue.set(this.editableFlight, 'fromAirport', flightTemplate.fromAirport);
+            Vue.set(this.editableFlight, 'toAirport', flightTemplate.toAirport);
+            Vue.set(this.editableFlight, 'fromTerminal', flightTemplate.fromTerminal);
+            Vue.set(this.editableFlight, 'toTerminal', flightTemplate.toTerminal);
+            Vue.set(this.editableFlight, 'fromTime', flightTemplate.fromTime);
+            Vue.set(this.editableFlight, 'toTime', flightTemplate.toTime);
+            Vue.set(this.editableFlight, 'airline', flightTemplate.airline);
         },
         saveFlight(): void {
             if (this.formMode === 'create') {
@@ -313,6 +314,21 @@ export default Vue.extend({
         resetStep(): void {
             this.step = 1;
         },
+        onFlightNumBlur(): void {
+            const flightNum = this.editableFlight.flightNum.trim();
+            if (flightNum) {
+                FlightApi.getFlightTemplate(flightNum)
+                    .then(res => {
+                        if (res) {
+                            console.log('in res success')
+                            this.setFieldsFromFlightTemplate(res.data);
+                        }
+                    })
+                    .catch(err => {
+                        console.error(`Failed to get flight templet: ${flightNum}`);
+                    });
+            }
+        }
     },
     watch: {
         'editableFlight.fromDate'() {
@@ -320,16 +336,7 @@ export default Vue.extend({
                 this.editableFlight.fromDate,
             );
         },
-        'editableFlight.flightNum'() {
-            // const _this = this;
-            // let existingFlight = this.flights.find(
-            //     (flight) => flight.flightNum === _this.editableFlight.flightNum
-            // );
-            // if (existingFlight) {
-            // _this.setFieldsFromFlightRecord(existingFlight);
-            // }
-        },
-        originalFlight: {
+        'originalFlight': {
             deep: true,
             handler(value, prevVal) {
                 if (value.id === 0) {
