@@ -71,14 +71,14 @@
                             <v-tooltip bottom>
                                 <template v-slot:activator="{ on, attrs }">
                                     <span
-                                        slot="activator"
+                                        v-bind="attrs" v-on="on"
                                         @click="
-                                            copyToClipboard(flight.ticketNum)
+                                            copyToClipboard(flight.ticketNum, flight.id)
                                         "
                                         >{{ flight.ticketNum }}</span
                                     >
                                 </template>
-                                <span> Click to copy ticket number! </span>
+                                <span :id="`copy-text-${flight.id}`"> Click to copy!</span>
                             </v-tooltip>
                         </v-flex>
                     </v-layout>
@@ -106,9 +106,20 @@ export default Vue.extend({
         },
     },
     methods: {
-        trigger(action: string) {
+        trigger(action: string): void {
             this.$emit('trigger', action, this.flight);
         },
+        copyToClipboard(ticketNum: string, flightId: number): void {
+            navigator.clipboard.writeText(ticketNum)
+            .then(() => {
+                document.getElementById(`copy-text-${flightId}`)
+                console.log('Async: Copying to clipboard was successful!');
+            })
+            .catch((err) => {
+                this.$emit('showSnackbar', 'Failed to copy to clipboard! :(');
+                console.error(new Error(err));
+            });
+        }
     },
 });
 </script>
