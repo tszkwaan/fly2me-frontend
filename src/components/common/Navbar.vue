@@ -7,7 +7,7 @@
                 </router-link>
             </v-toolbar-title>
             
-            <ul class='main-nav'>
+            <ul class='main-nav d-inline'>
                 <li>
                     <router-link :to="{name: 'FlightsPage'}">
                         <v-btn dark class="nav-btn">Flights</v-btn>
@@ -27,7 +27,7 @@
                             <div>
                                 <img :src="session.imageUrl" alt="user icon" />
                             </div>
-                            <div class="username">
+                            <div class="username d-none d-sm-flex">
                                 {{ session.username }}
                             </div>
                         </div>
@@ -95,7 +95,6 @@ export default Vue.extend({
     }
 
     .username {
-        display: flex;
         align-items: center;
         margin-left: 5px;
     }
@@ -106,7 +105,6 @@ export default Vue.extend({
 }
 .main-nav {
     list-style: none;
-    display: inline;
     
     a {
         text-decoration: none;

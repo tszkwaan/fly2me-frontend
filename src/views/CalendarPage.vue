@@ -43,7 +43,7 @@ export default Vue.extend({
                     this.flights = res.data.flights;
                 })
                 .catch((err) => {
-                    this.$emit('showSnackbar', 'Failed to get flights! :(');
+                    this.$emit('showSnackbar', 'Failed to get flights!');
                     console.error(new Error(err));
                 });
         },
@@ -53,7 +53,7 @@ export default Vue.extend({
                     this.users = res.data;
                 })
                 .catch((err) => {
-                    this.$emit('showSnackbar', 'Failed to get users! :(');
+                    this.$emit('showSnackbar', 'Failed to get users!');
                     console.error(new Error(err));
                 });
         },

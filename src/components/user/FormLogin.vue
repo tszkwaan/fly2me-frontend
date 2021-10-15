@@ -44,6 +44,7 @@ export default Vue.extend({
                         username: res.data.name,
                         isLoggedIn: true,
                         userId: res.data.id,
+                        imageUrl: res.data.image_url,
                     };
                     this.$store.commit('setSession', session);
                     this.$emit('closeDialog', false);

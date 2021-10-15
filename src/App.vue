@@ -9,12 +9,6 @@
                 <router-view />
             </v-container>
         </v-main>
-        <v-footer padless app bottom absolute>
-            <v-col class="text-center" cols="12">
-                {{ new Date().getFullYear() }} —
-                <span class="author">Tsz Kwan</span>
-            </v-col>
-        </v-footer>
         <login-dialog ref="loginDialog" />
     </v-app>
 </template>
@@ -50,6 +44,9 @@ export default Vue.extend({
     color: white;
     text-align: center;
 }
+.v-main {
+    height: 85vh;
+}
 .v-footer {
     margin-top: 50px;
     padding-left: 1rem;
@@ -58,6 +55,11 @@ export default Vue.extend({
 
     .author {
         font-style: italic;
+    }
+}
+@media(max-width: 509px) {
+    #app-container {
+        background-image: url('/img/bg_mobile.jpg');
     }
 }
 </style>
