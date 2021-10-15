@@ -12,6 +12,10 @@ const getAllFlightList = () => {
     return axios.get(`${apiEndpoint}/all`);
 };
 
+const getFlightTemplate = (flightNum: string) => {
+    return axios.get(`${apiEndpoint}_templates?flight_num=${flightNum}`);
+};
+
 const updateFlight = (flight: FlightInterface) => {
     return axios.put(`${apiEndpoint}/update`, flight);
 };
@@ -27,6 +31,7 @@ const deleteFlight = (id: number) => {
 export default {
     getMyFlightList,
     getAllFlightList,
+    getFlightTemplate,
     updateFlight,
     createFlight,
     deleteFlight,
