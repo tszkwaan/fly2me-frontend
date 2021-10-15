@@ -1,5 +1,6 @@
 <template>
     <calendar-view
+        v-if="session.isLoggedIn"
         :show-date="showDate"
         :show-times="true"
         :items="formattedFlights"
@@ -27,6 +28,7 @@ import Flight from '@/model/flight.ts';
 import 'vue-simple-calendar/static/css/default.css';
 import { FlightInterface } from '../model/flight';
 import Event from '@/components/calendar/Event.vue';
+import { mapState } from 'vuex';
 
 export default Vue.extend({
     name: 'calendar',
@@ -61,6 +63,7 @@ export default Vue.extend({
         formattedFlights() {
             return this.getFormattedItems(this.flights);
         },
+        ...mapState(['session']),
     },
 });
 </script>
