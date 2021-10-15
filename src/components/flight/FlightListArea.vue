@@ -64,7 +64,7 @@ export default Vue.extend({
         },
         sortFlightListByFromDate(): void {
             this.flights.sort((a, b) => {
-                return +new Date(b.fromDate) - +new Date(a.fromDate);
+                return +new Date(a.fromDate) - +new Date(b.fromDate);
             });
         },
         setFlights(event: 'create' | 'update', flight: FlightInterface) {
