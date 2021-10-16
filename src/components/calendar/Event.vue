@@ -13,7 +13,7 @@
                         size="small"
                     ></collab-user>
                 </v-col>
-                <v-col cols="10" class="d-none d-sm-block">
+                <v-col cols="10" class="d-none d-md-block">
                     <div>{{ fromTime }} - {{ toTime }}</div>
                     <div>{{ fromAirport }} -> {{ toAirport }}</div>
                 </v-col>
